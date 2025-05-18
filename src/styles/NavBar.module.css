@@ -23,6 +23,7 @@
     font-weight: 500 !important;
     transition: color 0.2s ease-in-out !important;
     cursor: pointer !important;
+    padding: 5px;
   }
   
   .navLink:hover {
@@ -31,4 +32,13 @@
   
   .navLink i {
     margin-right: 0.4rem;
+  }
+
+  .Active {
+    color: #007bff !important;
+    font-weight: 600 !important;
+  }
+  
+  .Active i {
+    color: #007bff !important;
   }
