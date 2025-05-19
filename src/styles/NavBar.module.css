@@ -6,19 +6,29 @@
     z-index: 1000;
   }
   
-  .NavBar img {
+.NavBar img {
     margin-right: 0.5rem;
     vertical-align: middle;
   }
-  
 
+.brand {
+    display: flex;
+    align-items: center;
+  }
+  
+.brandText {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-left: 0.5rem;
+    color: #1478B5;
+  }
 .navLinks {
     display: flex;
     gap: 1.5rem;
     align-items: center;
   }
   
-  .navLink {
+.navLink {
     color: #1478B5 !important;
     font-weight: 500 !important;
     transition: color 0.2s ease-in-out !important;
