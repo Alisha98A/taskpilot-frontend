@@ -8,8 +8,9 @@ const NavBar = () => {
     <Navbar className={styles.NavBar} expand="md" fixed="top">
       <Container>
         <NavLink to="/" exact activeClassName={styles.Active} className={styles.navLink}>
-          <Navbar.Brand>
+          <Navbar.Brand className={styles.brand}>
             <img src="/favicon_io/logo.png" alt="logo" height="45" />
+            <span className={styles.brandText}>TaskPilot</span>
           </Navbar.Brand>
         </NavLink>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
