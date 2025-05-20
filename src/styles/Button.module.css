@@ -13,3 +13,15 @@
   text-align: center;
   display: inline-block;
 }
+
+/* ---------- Hover & Active States ---------- */
+.Button:hover {
+  opacity: 0.9;
+}
+
+.Button:active,
+.Button:focus {
+  background-color: #2142b2;
+  color: #fff;
+  outline: none;
+}
