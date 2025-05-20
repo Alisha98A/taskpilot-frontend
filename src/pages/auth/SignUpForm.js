@@ -9,6 +9,16 @@ import appStyles from "../../App.module.css";
 
 // Reusable form input
 const SignUpForm = () => {
+  // Form data state
+  const [signUpData, setSignUpData] = useState({
+    username: "",
+    email: "",
+    password1: "",
+    password2: "",
+  });
+
+  // Destructure for easy use
+  const { username, email, password1, password2 } = signUpData;
   return (
     <Row className={styles.Row}>
       <Col className="my-auto py-4 px-3 px-md-5" md={6}>
@@ -76,7 +86,7 @@ const SignUpForm = () => {
           </Link>
         </Container>
       </Col>
-
+      
       <Col
         md={6}
         className={`my-auto d-none d-md-block p-2 ${styles.SignUpCol}`}
