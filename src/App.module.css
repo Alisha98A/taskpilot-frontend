@@ -83,3 +83,47 @@ i:hover {
   width: 100%;
   object-fit: contain;
 }
+
+/* ------------ Inputs ------------ */
+input[type="file"] {
+  display: none;
+}
+
+/* ------------ Accessibility ------------ */
+.sr-only,
+.sr-accessible {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* ------------ Scrollbar ------------ */
+*::-webkit-scrollbar {
+  width: 6px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #f0f0f0;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #aaa;
+  border-radius: 4px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #777;
+}
+
+/* ------------ Figures ------------ */
+figure {
+  text-align: center;
+  display: block;
+  margin: 1rem auto;
+}
