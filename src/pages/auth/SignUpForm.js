@@ -1,11 +1,22 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { Form, Button, Image, Col, Row, Container } from "react-bootstrap";
+import {
+  Form,
+  Button,
+  Image,
+  Col,
+  Row,
+  Container,
+  Alert,
+} from "react-bootstrap";
+import axios from "axios";
 
 // Styles
 import styles from "../../styles/SignInUpForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
+
+const API_URL = "https://taskpilot-backend-6ee557f05c5b.herokuapp.com";
 
 // Reusable form input
 const SignUpForm = () => {
@@ -34,6 +45,17 @@ const SignUpForm = () => {
     });
   };
 
+  // Submit handler: send data to backend and redirect on success
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      await axios.post(`${API_URL}/dj-rest-auth/registration/`, signUpData);
+      history.push("/signin");
+    } catch (err) {
+      // Capture and display backend errors
+      setErrors(err.response?.data || {});
+    }
+  };
 
   return (
     <Row className={styles.Row}>
@@ -46,7 +68,7 @@ const SignUpForm = () => {
             Plan smarter. Achieve faster.
           </p>
 
-          <Form>
+          <Form onSubmit={handleSubmit}>
             <Form.Group controlId="username">
               <Form.Label className="sr-only">Username</Form.Label>
               <Form.Control
@@ -54,18 +76,28 @@ const SignUpForm = () => {
                 type="text"
                 placeholder="Choose a username"
                 name="username"
+                value={username}
+                onChange={handleChange}
               />
             </Form.Group>
+            {errors.username?.map((msg, idx) => (
+              <Alert key={idx} variant="warning">{msg}</Alert>
+            ))}
 
-            <Form.Group controlId="formBasicEmail">
+            <Form.Group controlId="email">
               <Form.Label className="sr-only">Email address</Form.Label>
               <Form.Control
                 className={styles.Input}
                 type="email"
                 placeholder="Enter your email"
                 name="email"
+                value={email}
+                onChange={handleChange}
               />
             </Form.Group>
+            {errors.email?.map((msg, idx) => (
+              <Alert key={idx} variant="warning">{msg}</Alert>
+            ))}
 
             <Form.Group controlId="password1">
               <Form.Label className="sr-only">Password</Form.Label>
@@ -74,8 +106,13 @@ const SignUpForm = () => {
                 type="password"
                 placeholder="Create a password"
                 name="password1"
+                value={password1}
+                onChange={handleChange}
               />
             </Form.Group>
+            {errors.password1?.map((msg, idx) => (
+              <Alert key={idx} variant="warning">{msg}</Alert>
+            ))}
 
             <Form.Group controlId="password2">
               <Form.Label className="sr-only">Confirm Password</Form.Label>
@@ -84,8 +121,17 @@ const SignUpForm = () => {
                 type="password"
                 placeholder="Confirm your password"
                 name="password2"
+                value={password2}
+                onChange={handleChange}
               />
             </Form.Group>
+            {errors.password2?.map((msg, idx) => (
+              <Alert key={idx} variant="warning">{msg}</Alert>
+            ))}
+
+            {errors.non_field_errors?.map((msg, idx) => (
+              <Alert key={idx} variant="warning">{msg}</Alert>
+            ))}
 
             <Button
               className={`${btnStyles.Button} ${btnStyles.Wide} ${btnStyles.Bright} fs-5`}
@@ -102,7 +148,7 @@ const SignUpForm = () => {
           </Link>
         </Container>
       </Col>
-      
+
       <Col
         md={6}
         className={`my-auto d-none d-md-block p-2 ${styles.SignUpCol}`}
