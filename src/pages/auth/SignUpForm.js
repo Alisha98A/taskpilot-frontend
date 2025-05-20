@@ -40,7 +40,34 @@ const SignUpForm = () => {
                 name="email"
               />
             </Form.Group>
-            </Form>
+
+            <Form.Group controlId="password1">
+              <Form.Label className="sr-only">Password</Form.Label>
+              <Form.Control
+                className={styles.Input}
+                type="password"
+                placeholder="Create a password"
+                name="password1"
+              />
+            </Form.Group>
+
+            <Form.Group controlId="password2">
+              <Form.Label className="sr-only">Confirm Password</Form.Label>
+              <Form.Control
+                className={styles.Input}
+                type="password"
+                placeholder="Confirm your password"
+                name="password2"
+              />
+            </Form.Group>
+
+            <Button
+              className={`${btnStyles.Button} ${btnStyles.Wide} ${btnStyles.Bright} fs-5`}
+              type="submit"
+            >
+              Sign Up
+            </Button>
+          </Form>
         </Container>
       </Col>
     </Row>
