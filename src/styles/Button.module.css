@@ -77,3 +77,14 @@
   background-color: #242a3d;
   color: #ffffff;
 }
+
+/* --- Bright Button --- */
+.Bright {
+  background-color: #2ed9ff;
+  color: #2142b2;
+}
+
+.Bright:hover {
+  background-color: #1fb4d6;
+  color: #ffffff;
+}
