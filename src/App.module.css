@@ -18,3 +18,19 @@
 html {
   box-sizing: inherit;
 }
+
+/* ------------ Links ------------ */
+a {
+  color: #444;
+  transition: color 0.25s ease-in-out;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #1c3fb0;
+  text-decoration: underline;
+}
+
+a:hover i {
+  color: #1c3fb0;
+}
