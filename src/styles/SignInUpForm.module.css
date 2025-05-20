@@ -2,3 +2,8 @@
 .Row {
   height: calc(100vh - 81px);
 }
+
+/* ---------- Containers ---------- */
+.Container {
+  padding: 30px 10px;
+}
