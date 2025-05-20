@@ -31,3 +31,27 @@
   padding: 10px 50px;
   width: 100%;
 }
+
+/* ---------- Color Variants ---------- */
+
+/* --- Blue Button --- */
+.Blue {
+  background-color: #2142b2;
+  color: #ffffff;
+}
+
+.Blue:hover {
+  background-color: #1a36a0;
+}
+
+/* --- Blue Outline Button --- */
+.BlueOutline {
+  background-color: #ffffff;
+  color: #2142b2;
+  border: 1px solid #2142b2;
+}
+
+.BlueOutline:hover {
+  background-color: #2142b2;
+  color: #ffffff;
+}
