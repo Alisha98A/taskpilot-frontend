@@ -54,3 +54,18 @@ i:hover {
   cursor: pointer;
   color: #1c3fb0;
 }
+
+/* ------------ Containers ------------ */
+.Content {
+  background-color: #ffffff;
+  padding: 1rem;
+  border-radius: 4px;
+  border: 1px solid #e0e0e0;
+}
+
+.Card {
+  background-color: #fff;
+  padding: 1.2rem;
+  border: 1px solid #dbdbdb;
+  border-radius: 6px;
+}
