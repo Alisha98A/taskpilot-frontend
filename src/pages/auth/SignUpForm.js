@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { Form, Button, Image, Col, Row, Container } from "react-bootstrap";
 
@@ -25,6 +25,14 @@ const SignUpForm = () => {
 
   // Navigation after successful sign-up
   const history = useHistory();
+
+  // Update form data on input change
+  const handleChange = (event) => {
+    setSignUpData({
+      ...signUpData,
+      [event.target.name]: event.target.value,
+    });
+  };
 
 
   return (
