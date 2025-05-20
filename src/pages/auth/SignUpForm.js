@@ -19,7 +19,29 @@ const SignUpForm = () => {
           <p className="text-muted text-center mb-4" style={{ fontSize: "0.95rem" }}>
             Plan smarter. Achieve faster.
           </p>
-          </Container>
+
+          <Form>
+            <Form.Group controlId="username">
+              <Form.Label className="sr-only">Username</Form.Label>
+              <Form.Control
+                className={styles.Input}
+                type="text"
+                placeholder="Choose a username"
+                name="username"
+              />
+            </Form.Group>
+
+            <Form.Group controlId="formBasicEmail">
+              <Form.Label className="sr-only">Email address</Form.Label>
+              <Form.Control
+                className={styles.Input}
+                type="email"
+                placeholder="Enter your email"
+                name="email"
+              />
+            </Form.Group>
+            </Form>
+        </Container>
       </Col>
     </Row>
   );
