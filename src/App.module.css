@@ -19,6 +19,12 @@ html {
   box-sizing: inherit;
 }
 
+/* ------------ Typography ------------ */
+body {
+  font-size: 16px;
+  color: #333;
+}
+
 /* ------------ Links ------------ */
 a {
   color: #444;
@@ -32,5 +38,19 @@ a:hover {
 }
 
 a:hover i {
+  color: #1c3fb0;
+}
+
+/* ------------ Icons ------------ */
+i {
+  color: #c6c5cb;
+  font-size: 1.5rem;
+  padding: 0.4rem;
+  vertical-align: middle;
+  transition: color 0.25s ease-in-out;
+}
+
+i:hover {
+  cursor: pointer;
   color: #1c3fb0;
 }
