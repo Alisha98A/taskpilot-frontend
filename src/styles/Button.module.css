@@ -55,3 +55,25 @@
   background-color: #2142b2;
   color: #ffffff;
 }
+
+/* --- Black Button --- */
+.Black {
+  background-color: #242a3d;
+  color: #f8f9fc;
+}
+
+.Black:hover {
+  background-color: #1b1f2d;
+}
+
+/* --- Black Outline Button --- */
+.BlackOutline {
+  background-color: #f8f9fc;
+  color: #242a3d;
+  border: 1px solid #242a3d;
+}
+
+.BlackOutline:hover {
+  background-color: #242a3d;
+  color: #ffffff;
+}
