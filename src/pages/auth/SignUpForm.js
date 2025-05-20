@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Form, Button, Image, Col, Row, Container } from "react-bootstrap";
 
 // Styles
@@ -19,6 +19,14 @@ const SignUpForm = () => {
 
   // Destructure for easy use
   const { username, email, password1, password2 } = signUpData;
+
+  // Errors from backend response
+  const [errors, setErrors] = useState({});
+
+  // Navigation after successful sign-up
+  const history = useHistory();
+
+
   return (
     <Row className={styles.Row}>
       <Col className="my-auto py-4 px-3 px-md-5" md={6}>
