@@ -1,3 +1,6 @@
+Desktop image shown on sign up page was taken from: https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?fit=crop&w=900&q=80
+
+
 Copied this code from React Bootstrap, Navbar component and changed it to fit my project
 <Navbar bg="light" expand="lg">
   <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
