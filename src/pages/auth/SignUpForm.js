@@ -76,6 +76,17 @@ const SignUpForm = () => {
           </Link>
         </Container>
       </Col>
+
+      <Col
+        md={6}
+        className={`my-auto d-none d-md-block p-2 ${styles.SignUpCol}`}
+      >
+        <Image
+          className={appStyles.FillerImage}
+          src="https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?fit=crop&w=900&q=80"
+          alt="Organized desk with productivity tools"
+        />
+      </Col>
     </Row>
   );
 };
