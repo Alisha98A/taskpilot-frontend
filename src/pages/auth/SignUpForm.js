@@ -6,3 +6,12 @@ import { Form, Button, Image, Col, Row, Container } from "react-bootstrap";
 import styles from "../../styles/SignInUpForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
+
+// Reusable form input
+const SignUpForm = () => {
+  return (
+    <Row className={styles.Row}></Row>
+  );
+};
+
+export default SignUpForm;
