@@ -1,6 +1,15 @@
 import React, { useState } from "react";
-import { Row, Col, Container, Image, Form, Alert } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import {
+  Form,
+  Alert,
+  Button,
+  Col,
+  Row,
+  Image,
+  Container,
+} from "react-bootstrap";
+import { Link, useHistory } from "react-router-dom";
+import axios from "axios";
 
 import styles from "../../styles/SignInUpForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
