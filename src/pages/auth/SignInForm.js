@@ -8,10 +8,28 @@ import appStyles from "../../App.module.css";
 function SignInForm() {
   return (
     <Row className={styles.Row}>
-      {/* Left column placeholder */}
-      <Col md={6}></Col>
+      {/* Left column: sign-in form container */}
+      <Col className="my-auto p-0 p-md-2" md={6}>
+        <Container className={`${appStyles.Content} p-4`}>
+          {/* Heading */}
+          <h1 className={`${styles.Header} text-uppercase text-center`}>
+            Welcome back
+          </h1>
+          {/* Subtitle */}
+          <p className="text-muted text-center mb-4" style={{ fontSize: "0.95rem" }}>
+            Log in and start organizing your day!
+          </p>
+        </Container>
 
-      {/* Right column: image, hidden on small screens */}
+        {/* Link to sign-up page */}
+        <Container className={`mt-3 ${appStyles.Content}`}>
+          <Link className={styles.Link} to="/signup">
+            Don't have an account? <span>Sign up now!</span>
+          </Link>
+        </Container>
+      </Col>
+
+      {/* Right column: image */}
       <Col md={6} className={`my-auto d-none d-md-block p-2 ${styles.SignInCol}`}>
         <Image
           className={`${appStyles.FillerImage}`}
