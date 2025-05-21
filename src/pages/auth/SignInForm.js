@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import { Row, Col, Container, Image, Form } from "react-bootstrap";
+import { Row, Col, Container, Image, Form, Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 import styles from "../../styles/SignInUpForm.module.css";
 import appStyles from "../../App.module.css";
 
 function SignInForm() {
-  // State for form data: username & password
   const [signInData, setSignInData] = useState({
     username: "",
     password: "",
@@ -14,7 +13,9 @@ function SignInForm() {
 
   const { username, password } = signInData;
 
-  // Handler for input changes
+  // Errors state to display validation messages
+  const [errors, setErrors] = useState({});
+
   const handleChange = (event) => {
     setSignInData({
       ...signInData,
@@ -24,7 +25,6 @@ function SignInForm() {
 
   return (
     <Row className={styles.Row}>
-      {/* Left column: sign-in form */}
       <Col className="my-auto p-0 p-md-2" md={6}>
         <Container className={`${appStyles.Content} p-4`}>
           <h1 className={`${styles.Header} text-uppercase text-center`}>Welcome back</h1>
@@ -32,7 +32,6 @@ function SignInForm() {
             Log in and start organizing your day!
           </p>
 
-          {/* Form with username & password inputs */}
           <Form>
             <Form.Group controlId="username">
               <Form.Label className="sr-only">Username</Form.Label>
@@ -45,6 +44,12 @@ function SignInForm() {
                 className={styles.Input}
               />
             </Form.Group>
+            {/* Show username errors */}
+            {errors.username?.map((msg, idx) => (
+              <Alert key={idx} variant="warning">
+                {msg}
+              </Alert>
+            ))}
 
             <Form.Group controlId="password">
               <Form.Label className="sr-only">Password</Form.Label>
@@ -57,6 +62,12 @@ function SignInForm() {
                 className={styles.Input}
               />
             </Form.Group>
+            {/* Show password errors */}
+            {errors.password?.map((msg, idx) => (
+              <Alert key={idx} variant="warning">
+                {msg}
+              </Alert>
+            ))}
           </Form>
         </Container>
 
@@ -67,7 +78,6 @@ function SignInForm() {
         </Container>
       </Col>
 
-      {/* Right column: image */}
       <Col md={6} className={`my-auto d-none d-md-block p-2 ${styles.SignInCol}`}>
         <Image
           className={`${appStyles.FillerImage}`}
