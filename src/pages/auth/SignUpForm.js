@@ -62,13 +62,14 @@ const SignUpForm = () => {
       <Col className="my-auto py-4 px-3 px-md-5" md={6}>
         <Container className={`${appStyles.Content} p-4`}>
           <h1 className={`${styles.Header} text-uppercase text-center`}>
-            Welcome to TaskPilot
+            Create your TaskPilot account
           </h1>
           <p className="text-muted text-center mb-4" style={{ fontSize: "0.95rem" }}>
-            Plan smarter. Achieve faster.
+            One step closer to mastering your tasks.
           </p>
 
           <Form onSubmit={handleSubmit}>
+            {/* Username */}
             <Form.Group controlId="username">
               <Form.Label className="sr-only">Username</Form.Label>
               <Form.Control
@@ -84,6 +85,7 @@ const SignUpForm = () => {
               <Alert key={idx} variant="warning">{msg}</Alert>
             ))}
 
+            {/* Email */}
             <Form.Group controlId="email">
               <Form.Label className="sr-only">Email address</Form.Label>
               <Form.Control
@@ -99,6 +101,7 @@ const SignUpForm = () => {
               <Alert key={idx} variant="warning">{msg}</Alert>
             ))}
 
+            {/* Password */}
             <Form.Group controlId="password1">
               <Form.Label className="sr-only">Password</Form.Label>
               <Form.Control
@@ -114,6 +117,7 @@ const SignUpForm = () => {
               <Alert key={idx} variant="warning">{msg}</Alert>
             ))}
 
+            {/* Confirm Password */}
             <Form.Group controlId="password2">
               <Form.Label className="sr-only">Confirm Password</Form.Label>
               <Form.Control
@@ -129,10 +133,12 @@ const SignUpForm = () => {
               <Alert key={idx} variant="warning">{msg}</Alert>
             ))}
 
+            {/* Non-field errors */}
             {errors.non_field_errors?.map((msg, idx) => (
               <Alert key={idx} variant="warning">{msg}</Alert>
             ))}
 
+            {/* Submit Button */}
             <Button
               className={`${btnStyles.Button} ${btnStyles.Wide} ${btnStyles.Bright} fs-5`}
               type="submit"
@@ -144,7 +150,7 @@ const SignUpForm = () => {
 
         <Container className={`mt-3 ${appStyles.Content} text-center`}>
           <Link className={styles.Link} to="/signin">
-            Already have an account? <span>Sign in</span>
+            Already have an account? <span>Sign in here!</span>
           </Link>
         </Container>
       </Col>
