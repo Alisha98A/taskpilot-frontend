@@ -1,27 +1,65 @@
-import React from "react";
-import { Row, Col, Container, Image } from "react-bootstrap";
+import React, { useState } from "react";
+import { Row, Col, Container, Image, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 import styles from "../../styles/SignInUpForm.module.css";
 import appStyles from "../../App.module.css";
 
 function SignInForm() {
+  // State for form data: username & password
+  const [signInData, setSignInData] = useState({
+    username: "",
+    password: "",
+  });
+
+  const { username, password } = signInData;
+
+  // Handler for input changes
+  const handleChange = (event) => {
+    setSignInData({
+      ...signInData,
+      [event.target.name]: event.target.value,
+    });
+  };
+
   return (
     <Row className={styles.Row}>
-      {/* Left column: sign-in form container */}
+      {/* Left column: sign-in form */}
       <Col className="my-auto p-0 p-md-2" md={6}>
         <Container className={`${appStyles.Content} p-4`}>
-          {/* Heading */}
-          <h1 className={`${styles.Header} text-uppercase text-center`}>
-            Welcome back
-          </h1>
-          {/* Subtitle */}
+          <h1 className={`${styles.Header} text-uppercase text-center`}>Welcome back</h1>
           <p className="text-muted text-center mb-4" style={{ fontSize: "0.95rem" }}>
             Log in and start organizing your day!
           </p>
+
+          {/* Form with username & password inputs */}
+          <Form>
+            <Form.Group controlId="username">
+              <Form.Label className="sr-only">Username</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Username"
+                name="username"
+                value={username}
+                onChange={handleChange}
+                className={styles.Input}
+              />
+            </Form.Group>
+
+            <Form.Group controlId="password">
+              <Form.Label className="sr-only">Password</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Password"
+                name="password"
+                value={password}
+                onChange={handleChange}
+                className={styles.Input}
+              />
+            </Form.Group>
+          </Form>
         </Container>
 
-        {/* Link to sign-up page */}
         <Container className={`mt-3 ${appStyles.Content}`}>
           <Link className={styles.Link} to="/signup">
             Don't have an account? <span>Sign up now!</span>
