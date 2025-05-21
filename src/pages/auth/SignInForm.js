@@ -3,6 +3,7 @@ import { Row, Col, Container, Image, Form, Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 import styles from "../../styles/SignInUpForm.module.css";
+import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 
 function SignInForm() {
@@ -16,11 +17,28 @@ function SignInForm() {
   // Errors state to display validation messages
   const [errors, setErrors] = useState({});
 
+  // For navigation after successful login
+  const history = useHistory();
+
+  // Updates form data state on input changes
   const handleChange = (event) => {
     setSignInData({
       ...signInData,
       [event.target.name]: event.target.value,
     });
+  };
+
+  // Handles form submission, sends login request to backend
+  const handleSubmit = async (event) => {
+    event.preventDefault(); // Prevent default form submission behavior
+    try {
+      // Attempt login with current form data
+      await axios.post(`${API_URL}/dj-rest-auth/login/`, signInData);
+      history.push("/"); // Redirect to homepage/dashboard on success
+    } catch (err) {
+      // If error, set error messages from backend response
+      setErrors(err.response?.data || {});
+    }
   };
 
   return (
@@ -32,7 +50,9 @@ function SignInForm() {
             Log in and start organizing your day!
           </p>
 
-          <Form>
+          {/* Sign-in form */}
+          <Form onSubmit={handleSubmit}>
+            {/* Username input */}
             <Form.Group controlId="username">
               <Form.Label className="sr-only">Username</Form.Label>
               <Form.Control
@@ -68,6 +88,21 @@ function SignInForm() {
                 {msg}
               </Alert>
             ))}
+
+            {/* Display any non-field errors (e.g., invalid login) */}
+            {errors.non_field_errors?.map((msg, idx) => (
+              <Alert key={idx} variant="warning">
+                {msg}
+              </Alert>
+            ))}
+
+            {/* Submit button */}
+            <Button
+              className={`${btnStyles.Button} ${btnStyles.Wide} ${btnStyles.Bright} fs-5`}
+              type="submit"
+            >
+              Sign In
+            </Button>
           </Form>
         </Container>
 
