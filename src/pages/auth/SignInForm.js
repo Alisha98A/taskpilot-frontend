@@ -28,13 +28,14 @@ function SignInForm() {
   // Destructure username and password from state for easier access
   const { username, password } = signInData;
 
-  // Errors state to display validation messages
+  // Errors and success message states
   const [errors, setErrors] = useState({});
+  const [successMessage, setSuccessMessage] = useState("");
 
   // For navigation after successful login
   const history = useHistory();
 
-  // Updates form data state on input changes
+  // Update form input values
   const handleChange = (event) => {
     setSignInData({
       ...signInData,
@@ -42,16 +43,21 @@ function SignInForm() {
     });
   };
 
-  // Handles form submission, sends login request to backend
+  // Handle form submission
   const handleSubmit = async (event) => {
-    event.preventDefault(); // Prevent default form submission behavior
+    event.preventDefault();
     try {
-      // Attempt login with current form data
       await axios.post(`${API_URL}/dj-rest-auth/login/`, signInData);
-      history.push("/"); // Redirect to homepage/dashboard on success
+      setSuccessMessage("Login successful! Redirecting...");
+      setErrors({});
+
+      // Delay navigation slightly to let the user see the message
+      setTimeout(() => {
+        history.push("/");
+      }, 1500);
     } catch (err) {
-      // If error, set error messages from backend response
       setErrors(err.response?.data || {});
+      setSuccessMessage(""); // Clear previous success message if any
     }
   };
 
@@ -71,6 +77,13 @@ function SignInForm() {
           >
             Log in and start organizing your day!
           </p>
+
+          {/* Success Alert */}
+          {successMessage && (
+            <Alert variant="success" className="text-center">
+              {successMessage}
+            </Alert>
+          )}
 
           {/* Sign-in form */}
           <Form onSubmit={handleSubmit}>
