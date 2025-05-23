@@ -4,10 +4,12 @@ import styles from "../styles/NavBar.module.css";
 import { NavLink, useHistory } from "react-router-dom";
 import { useCurrentUser, useSetCurrentUser } from "../contexts/CurrentUserContext";
 import axios from "axios";
+import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
+  const { expanded, setExpanded, ref } = useClickOutsideToggle();
   const history = useHistory();
 
   const handleSignOut = async () => {
@@ -77,21 +79,25 @@ const NavBar = () => {
   );
 
   return (
-    <Navbar className={styles.NavBar} expand="md" fixed="top">
+    <Navbar
+      expanded={expanded}
+      className={styles.NavBar}
+      expand="md"
+      fixed="top"
+    >
       <Container>
-        <NavLink
-          to="/"
-          className={({ isActive }) =>
-            isActive ? `${styles.navLink} ${styles.Active}` : styles.navLink
-          }
-        >
+        <NavLink to="/" className={styles.navLink}>
           <Navbar.Brand className={styles.brand}>
             <img src="/favicon_io/logo.png" alt="logo" height="45" />
             <span className={styles.brandText}>TaskPilot</span>
           </Navbar.Brand>
         </NavLink>
         {newTaskIcon}
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Toggle
+          ref={ref}
+          onClick={() => setExpanded(!expanded)}
+          aria-controls="basic-navbar-nav"
+        />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto text-left">
             <NavLink
