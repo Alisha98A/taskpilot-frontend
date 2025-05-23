@@ -29,6 +29,43 @@ const NavBar = () => {
     </NavLink>
   );
 
+  const loggedInLinks = (
+    <>
+      <NavLink
+        to="/tasks"
+        className={styles.navLink}
+      >
+        <i className="fas fa-tasks"></i> My Tasks
+      </NavLink>
+      <NavLink
+        to="/notes"
+        className={styles.navLink}
+      >
+        <i className="fas fa-sticky-note"></i> Notes
+      </NavLink>
+      <span onClick={handleSignOut} className={styles.navLink} role="button">
+        <i className="fas fa-sign-out-alt"></i> Sign out
+      </span>
+    </>
+  );
+
+  const loggedOutLinks = (
+    <>
+      <NavLink
+        to="/signin"
+        className={styles.navLink}
+      >
+        <i className="fas fa-sign-in-alt"></i> Sign in
+      </NavLink>
+      <NavLink
+        to="/signup"
+        className={styles.navLink}
+      >
+        <i className="fas fa-user-plus"></i> Sign up
+      </NavLink>
+    </>
+  );
+
   return (
     <Navbar className={styles.NavBar} expand="md" fixed="top">
       <Container>
@@ -48,18 +85,7 @@ const NavBar = () => {
             >
               <i className="fas fa-home"></i> Home
             </NavLink>
-            <NavLink
-              to="/signin"
-              className={styles.navLink}
-            >
-              <i className="fas fa-sign-in-alt"></i> Sign in
-            </NavLink>
-            <NavLink
-              to="/signup"
-              className={styles.navLink}
-            >
-              <i className="fas fa-user-plus"></i> Sign up
-            </NavLink>
+            {currentUser ? loggedInLinks : loggedOutLinks}
           </Nav>
         </Navbar.Collapse>
       </Container>
