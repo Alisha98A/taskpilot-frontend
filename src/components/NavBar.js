@@ -23,7 +23,9 @@ const NavBar = () => {
   const newTaskIcon = currentUser && (
     <NavLink
       to="/tasks/create"
-      className={styles.navLink}
+      className={({ isActive }) =>
+        isActive ? `${styles.navLink} ${styles.Active}` : styles.navLink
+      }
     >
       <i className="far fa-plus-square"></i> New Task
     </NavLink>
@@ -33,13 +35,17 @@ const NavBar = () => {
     <>
       <NavLink
         to="/tasks"
-        className={styles.navLink}
+        className={({ isActive }) =>
+          isActive ? `${styles.navLink} ${styles.Active}` : styles.navLink
+        }
       >
         <i className="fas fa-tasks"></i> My Tasks
       </NavLink>
       <NavLink
         to="/notes"
-        className={styles.navLink}
+        className={({ isActive }) =>
+          isActive ? `${styles.navLink} ${styles.Active}` : styles.navLink
+        }
       >
         <i className="fas fa-sticky-note"></i> Notes
       </NavLink>
@@ -53,13 +59,17 @@ const NavBar = () => {
     <>
       <NavLink
         to="/signin"
-        className={styles.navLink}
+        className={({ isActive }) =>
+          isActive ? `${styles.navLink} ${styles.Active}` : styles.navLink
+        }
       >
         <i className="fas fa-sign-in-alt"></i> Sign in
       </NavLink>
       <NavLink
         to="/signup"
-        className={styles.navLink}
+        className={({ isActive }) =>
+          isActive ? `${styles.navLink} ${styles.Active}` : styles.navLink
+        }
       >
         <i className="fas fa-user-plus"></i> Sign up
       </NavLink>
@@ -69,7 +79,12 @@ const NavBar = () => {
   return (
     <Navbar className={styles.NavBar} expand="md" fixed="top">
       <Container>
-        <NavLink to="/" className={styles.navLink}>
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            isActive ? `${styles.navLink} ${styles.Active}` : styles.navLink
+          }
+        >
           <Navbar.Brand className={styles.brand}>
             <img src="/favicon_io/logo.png" alt="logo" height="45" />
             <span className={styles.brandText}>TaskPilot</span>
@@ -81,7 +96,9 @@ const NavBar = () => {
           <Nav className="ml-auto text-left">
             <NavLink
               to="/"
-              className={styles.navLink}
+              className={({ isActive }) =>
+                isActive ? `${styles.navLink} ${styles.Active}` : styles.navLink
+              }
             >
               <i className="fas fa-home"></i> Home
             </NavLink>
