@@ -1,9 +1,11 @@
 import React from 'react';
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import styles from '../styles/NavBar.module.css';
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 
 const NavBar = () => {
+  const history = useHistory();
+
   return (
     <Navbar className={styles.NavBar} expand="md" fixed="top">
       <Container>
