@@ -14,12 +14,14 @@ import axios from "axios";
 import styles from "../../styles/SignInUpForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
+import { useSetCurrentUser } from "../../contexts/CurrentUserContext"; // ✅ import
 
 // Backend API base URL
 const API_URL = "https://taskpilot-backend-6ee557f05c5b.herokuapp.com";
 
 function SignInForm() {
-  // State to hold form input values
+  const setCurrentUser = useSetCurrentUser();
+
   const [signInData, setSignInData] = useState({
     username: "",
     password: "",
@@ -47,7 +49,10 @@ function SignInForm() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.post(`${API_URL}/dj-rest-auth/login/`, signInData);
+      const { data } = await axios.post(`${API_URL}/dj-rest-auth/login/`, signInData);
+
+      setCurrentUser(data.user);
+
       setSuccessMessage("Login successful! Redirecting...");
       setErrors({});
 
