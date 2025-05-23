@@ -20,6 +20,15 @@ const NavBar = () => {
     }
   };
 
+  const newTaskIcon = currentUser && (
+    <NavLink
+      to="/tasks/create"
+      className={styles.navLink}
+    >
+      <i className="far fa-plus-square"></i> New Task
+    </NavLink>
+  );
+
   return (
     <Navbar className={styles.NavBar} expand="md" fixed="top">
       <Container>
@@ -29,6 +38,7 @@ const NavBar = () => {
             <span className={styles.brandText}>TaskPilot</span>
           </Navbar.Brand>
         </NavLink>
+        {newTaskIcon}
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto text-left">
