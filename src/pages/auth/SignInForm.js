@@ -9,15 +9,13 @@ import {
   Container,
 } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
-import axios from "axios";
+import { axiosReq } from '../../api/axiosDefaults';
 
 import styles from "../../styles/SignInUpForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
-import { useSetCurrentUser } from "../../contexts/CurrentUserContext"; // ✅ import
+import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 
-// Backend API base URL
-const API_URL = "https://taskpilot-backend-6ee557f05c5b.herokuapp.com";
 
 function SignInForm() {
   const setCurrentUser = useSetCurrentUser();
@@ -49,7 +47,7 @@ function SignInForm() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const { data } = await axios.post(`${API_URL}/dj-rest-auth/login/`, signInData);
+      const { data } = await axiosReq.post("/dj-rest-auth/login/", signInData);
 
       setCurrentUser(data.user);
 

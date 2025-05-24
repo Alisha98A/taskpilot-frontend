@@ -9,14 +9,12 @@ import {
   Container,
   Alert,
 } from "react-bootstrap";
-import axios from "axios";
+import { axiosReq } from '../../api/axiosDefaults';
 
 // Styles
 import styles from "../../styles/SignInUpForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
-
-const API_URL = "https://taskpilot-backend-6ee557f05c5b.herokuapp.com";
 
 // Reusable form input
 const SignUpForm = () => {
@@ -49,7 +47,7 @@ const SignUpForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.post(`${API_URL}/dj-rest-auth/registration/`, signUpData);
+      await axiosReq.post("/dj-rest-auth/registration/", signUpData);
       history.push("/signin");
     } catch (err) {
       // Capture and display backend errors
