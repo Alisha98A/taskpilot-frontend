@@ -10,13 +10,13 @@ function WelcomePage() {
             <Card className="text-center shadow-lg border-0 welcome-card">
               <Card.Body>
                 <Card.Title as="h1" className="fw-bold">
-                  Welcome to TaskPilot
+                  Welcome to <span className="text-primary">TaskPilot</span>
                 </Card.Title>
                 <Card.Subtitle className="mb-3 text-muted">
                   Chart your course. Navigate your goals.
                 </Card.Subtitle>
                 <Card.Text className="mb-4">
-                  Your productivity co-pilot is here. TaskPilot helps you plan and complete your tasks with confidence.
+                  Your productivity co-pilot is here. <span className="text-primary fw-bold">TaskPilot</span> helps you plan and complete your tasks with confidence.
                 </Card.Text>
                 <div className="button-group">
                   <Link to="/signup">
