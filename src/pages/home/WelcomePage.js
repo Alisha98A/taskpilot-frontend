@@ -1,4 +1,5 @@
-import { Container, Row, Col, Card } from "react-bootstrap";
+import { Container, Row, Col, Button, Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 function WelcomePage() {
   return (
@@ -17,6 +18,14 @@ function WelcomePage() {
                 <Card.Text className="mb-4">
                   Your productivity co-pilot is here. TaskPilot helps you plan and complete your tasks with confidence.
                 </Card.Text>
+                <div className="button-group">
+                  <Link to="/signup">
+                    <Button variant="success" size="lg">Get Started</Button>
+                  </Link>
+                  <Link to="/signin">
+                    <Button variant="outline-primary" size="lg">Sign In</Button>
+                  </Link>
+                </div>
               </Card.Body>
             </Card>
           </Col>
