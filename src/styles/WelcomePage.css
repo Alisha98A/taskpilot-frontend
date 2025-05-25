@@ -1,0 +1,14 @@
+/* ========= HERO SECTION ========= */
+
+/* Full viewport background with centered content */
+.welcome-hero {
+  height: 100vh;
+  width: 100vw;
+  background: url('../assets/welcome-background.jpg') no-repeat center center fixed;
+  background-size: cover;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
