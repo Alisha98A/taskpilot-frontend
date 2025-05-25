@@ -11,6 +11,12 @@ function WelcomePage() {
                 <Card.Title as="h1" className="fw-bold">
                   Welcome to TaskPilot
                 </Card.Title>
+                <Card.Subtitle className="mb-3 text-muted">
+                  Chart your course. Navigate your goals.
+                </Card.Subtitle>
+                <Card.Text className="mb-4">
+                  Your productivity co-pilot is here. TaskPilot helps you plan and complete your tasks with confidence.
+                </Card.Text>
               </Card.Body>
             </Card>
           </Col>
