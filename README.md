@@ -1,3 +1,10 @@
+Welcomepage image background: 
+https://images.unsplash.com/photo-1634420790251-a0eb48dea935?q=80&w=3174&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
+
+
+https://images.unsplash.com/photo-1662408081787-d094790f11dd?q=80&w=2938&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
+
+
 Desktop image shown on sign up page was taken from: https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?fit=crop&w=900&q=80
 
 
