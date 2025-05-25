@@ -3,7 +3,11 @@
 
 import { Container, Row, Col, Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { BsCheckCircle, BsCalendarCheck, BsClipboardCheck } from "react-icons/bs";
+import {
+  BsCheckCircle,
+  BsCalendarCheck,
+  BsClipboardCheck,
+} from "react-icons/bs";
 import "../../styles/WelcomePage.css";
 
 function WelcomePage() {
@@ -27,25 +31,33 @@ function WelcomePage() {
                   Chart your course. Navigate your goals.
                 </Card.Subtitle>
 
-                {/* Icon row with Bootstrap spacing */}
-                <div className="icon-row d-flex justify-content-center mb-3">
-                  <BsClipboardCheck size={40} className="text-success me-3" />
-                  <BsCalendarCheck size={40} className="text-warning me-3" />
+                {/* Icon row with Bootstrap 4 spacing */}
+                <div className="icon-row d-flex justify-content-center">
+                  <BsClipboardCheck size={40} className="text-success mr-3" />
+                  <BsCalendarCheck size={40} className="text-warning mr-3" />
                   <BsCheckCircle size={40} className="text-primary" />
                 </div>
 
                 {/* Informational text with emphasis */}
                 <Card.Text className="mb-4">
-                  Your productivity co-pilot is here. <span className="text-primary fw-bold">TaskPilot</span> helps you plan and complete your tasks with confidence.
+                  Your productivity co-pilot is here.{" "}
+                  <span className="text-primary fw-bold">TaskPilot</span> makes it easy to plan, prioritize,
+                  and complete your tasks with confidence. Whether you're
+                  tackling daily to-dos or long-term goals, we're here to help
+                  you stay organized—every step of the way.
                 </Card.Text>
 
                 {/* Buttons for signup and signin routes */}
                 <div className="button-group">
                   <Link to="/signup">
-                    <Button variant="success" size="lg">Get Started</Button>
+                    <Button variant="success" size="lg">
+                      Get Started
+                    </Button>
                   </Link>
                   <Link to="/signin">
-                    <Button variant="outline-primary" size="lg">Sign In</Button>
+                    <Button variant="outline-primary" size="lg">
+                      Sign In
+                    </Button>
                   </Link>
                 </div>
               </Card.Body>
