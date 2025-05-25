@@ -1,6 +1,7 @@
 import { Container, Row, Col, Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { BsCheckCircle, BsCalendarCheck, BsClipboardCheck } from "react-icons/bs";
+import "../../styles/WelcomePage.css";
 
 function WelcomePage() {
   return (
