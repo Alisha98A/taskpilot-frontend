@@ -42,3 +42,52 @@
   color: #343a40;
   margin-bottom: 2rem;
 }
+
+/* ========= ICONS ========= */
+.welcome-card .icon-row {
+  margin: 2rem 0;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+/* ========= BUTTONS ========= */
+.welcome-card .btn-lg {
+  padding: 0.75rem 2rem;
+  font-size: 1.125rem;
+  border-radius: 0.75rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.welcome-card .btn-success {
+  background-color: #198754;
+  border: none;
+}
+
+.welcome-card .btn-success:hover {
+  background-color: #157347;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(25, 135, 84, 0.3);
+}
+
+.welcome-card .btn-outline-primary {
+  border: 2px solid #0d6efd;
+  color: #0d6efd;
+  background-color: transparent;
+}
+
+.welcome-card .btn-outline-primary:hover {
+  background-color: #0d6efd;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(13, 110, 253, 0.3);
+}
+
+.welcome-card .button-group {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
