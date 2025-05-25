@@ -91,3 +91,76 @@
   flex-wrap: wrap;
   margin-top: 2rem;
 }
+
+/* ========= RESPONSIVE DESIGN ========= */
+
+/* --- Tablets and small screens (<=768px) --- */
+@media (max-width: 768px) {
+  .welcome-hero {
+    padding-top: 2px;
+  }
+
+  .welcome-card {
+    padding: 1.25rem;
+  }
+
+  .welcome-card h1 {
+    font-size: 1.75rem;
+  }
+
+  .welcome-card .card-subtitle {
+    font-size: 1rem;
+  }
+
+  .welcome-card .card-text {
+    font-size: 1rem;
+  }
+
+  .welcome-card .btn-lg {
+    padding: 0.5rem 1.25rem;
+    font-size: 1rem;
+  }
+}
+
+/* --- Very small devices (<=394px) --- */
+@media (max-width: 394px) {
+  .welcome-hero {
+    padding: 1rem;
+    padding-top: 1vh;
+  }
+
+  .welcome-card {
+    max-width: 90vw;
+    margin: 0 auto;
+  }
+
+  .welcome-card h1 {
+    font-size: 1.25rem;
+    line-height: 1.2;
+  }
+
+  .welcome-card .card-subtitle {
+    font-size: 0.75rem;
+  }
+
+  .welcome-card .card-text {
+    font-size: 0.75rem;
+    line-height: 1.4;
+  }
+
+  .welcome-card .icon-row svg {
+    width: 25px;
+    height: 25px;
+  }
+
+  .welcome-card .button-group {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .welcome-card .button-group .btn-lg {
+    width: 100%;
+    font-size: 0.875rem;
+    padding: 0.5rem 1rem;
+  }
+}
