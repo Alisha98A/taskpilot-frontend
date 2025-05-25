@@ -1,4 +1,12 @@
+/* WelcomePage.css
+   Styles for the WelcomePage component including
+   background, card layout, typography, icons, buttons,
+   and responsive adjustments.
+*/
+
 /* ========= HERO SECTION ========= */
+
+/* Full viewport background with centered content */
 .welcome-hero {
   height: 100vh;
   width: 100vw;
@@ -12,6 +20,8 @@
 }
 
 /* ========= CARD STYLING ========= */
+
+/* Main card container for welcome content */
 .welcome-card {
   background-color: rgba(255, 255, 255, 0.95);
   border-radius: 1.5rem;
@@ -22,21 +32,26 @@
 }
 
 /* ========= TYPOGRAPHY ========= */
+
+/* Main title */
 .welcome-card h1 {
   font-size: 2.5rem;
   color: #212529;
 }
 
+/* Colored span inside heading */
 .welcome-card .text-primary {
   color: #0d6efd !important;
 }
 
+/* Subtitle under main title */
 .welcome-card .card-subtitle {
   font-size: 1.25rem;
   color: #6c757d;
   margin-bottom: 1rem;
 }
 
+/* Main paragraph text */
 .welcome-card .card-text {
   font-size: 1.125rem;
   color: #343a40;
@@ -44,6 +59,8 @@
 }
 
 /* ========= ICONS ========= */
+
+/* Container for icons (clipboard, calendar, checkmark) */
 .welcome-card .icon-row {
   margin: 2rem 0;
   display: flex;
@@ -52,6 +69,8 @@
 }
 
 /* ========= BUTTONS ========= */
+
+/* Base style for all large buttons */
 .welcome-card .btn-lg {
   padding: 0.75rem 2rem;
   font-size: 1.125rem;
@@ -60,6 +79,7 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
+/* Solid green 'Get Started' button */
 .welcome-card .btn-success {
   background-color: #198754;
   border: none;
@@ -71,6 +91,7 @@
   box-shadow: 0 6px 16px rgba(25, 135, 84, 0.3);
 }
 
+/* Outline blue 'Sign In' button */
 .welcome-card .btn-outline-primary {
   border: 2px solid #0d6efd;
   color: #0d6efd;
@@ -84,11 +105,12 @@
   box-shadow: 0 6px 16px rgba(13, 110, 253, 0.3);
 }
 
+/* Container for button group with spacing */
 .welcome-card .button-group {
   display: flex;
   justify-content: center;
   gap: 1.5rem;
-  flex-wrap: wrap;
+  flex-wrap: wrap; /* Wrap buttons on small screens */
   margin-top: 2rem;
 }
 
@@ -162,5 +184,38 @@
     width: 100%;
     font-size: 0.875rem;
     padding: 0.5rem 1rem;
+  }
+}
+
+/* --- Ultra small devices (<=275px) --- */
+@media (max-width: 275px) {
+  .welcome-card {
+    padding: 1rem;
+    max-width: 95vw;
+  }
+
+  .welcome-card h1 {
+    font-size: 1rem;
+  }
+
+  .welcome-card .card-subtitle,
+  .welcome-card .card-text {
+    font-size: 0.65rem;
+  }
+
+  .welcome-card .icon-row svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .welcome-card .button-group {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .welcome-card .button-group .btn-lg {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.8rem;
+    width: 100%;
   }
 }
