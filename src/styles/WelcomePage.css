@@ -1,6 +1,4 @@
 /* ========= HERO SECTION ========= */
-
-/* Full viewport background with centered content */
 .welcome-hero {
   height: 100vh;
   width: 100vw;
@@ -11,4 +9,36 @@
   align-items: center;
   justify-content: center;
   padding: 2rem;
+}
+
+/* ========= CARD STYLING ========= */
+.welcome-card {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  max-width: 700px;
+  margin-bottom: 0;
+  text-align: center;
+}
+
+/* ========= TYPOGRAPHY ========= */
+.welcome-card h1 {
+  font-size: 2.5rem;
+  color: #212529;
+}
+
+.welcome-card .text-primary {
+  color: #0d6efd !important;
+}
+
+.welcome-card .card-subtitle {
+  font-size: 1.25rem;
+  color: #6c757d;
+  margin-bottom: 1rem;
+}
+
+.welcome-card .card-text {
+  font-size: 1.125rem;
+  color: #343a40;
+  margin-bottom: 2rem;
 }
