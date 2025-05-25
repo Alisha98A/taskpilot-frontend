@@ -1,5 +1,6 @@
 import { Container, Row, Col, Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { BsCheckCircle, BsCalendarCheck, BsClipboardCheck } from "react-icons/bs";
 
 function WelcomePage() {
   return (
@@ -15,6 +16,11 @@ function WelcomePage() {
                 <Card.Subtitle className="mb-3 text-muted">
                   Chart your course. Navigate your goals.
                 </Card.Subtitle>
+                <div className="icon-row d-flex justify-content-center mb-3">
+                  <BsClipboardCheck size={40} className="text-success me-3" />
+                  <BsCalendarCheck size={40} className="text-warning me-3" />
+                  <BsCheckCircle size={40} className="text-primary" />
+                </div>
                 <Card.Text className="mb-4">
                   Your productivity co-pilot is here. <span className="text-primary fw-bold">TaskPilot</span> helps you plan and complete your tasks with confidence.
                 </Card.Text>
