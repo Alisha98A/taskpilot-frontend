@@ -68,3 +68,20 @@
   font-size: 0.95rem;
   color: #6b7280;
 }
+
+/* ========== Quick Actions Section ========== */
+.actionsPanel {
+  margin-top: 2rem;
+}
+
+.actionsPanel h3 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  color: #1f2937;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
