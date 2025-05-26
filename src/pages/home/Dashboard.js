@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styles from '../../styles/Dashboard.module.css';
 
 function Dashboard() {
@@ -10,6 +11,8 @@ function Dashboard() {
           View your productivity insights and quickly jump into tasks or notes.
         </p>
       </header>
+
+      <section className={styles.statsSection}></section>
     </main>
   );
 }
