@@ -85,3 +85,40 @@
   gap: 1rem;
   flex-wrap: wrap;
 }
+
+/* ========== Buttons ========== */
+.primaryBtn {
+  background-color: #0d6efd;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.primaryBtn:hover {
+  background-color: #0b5ed7;
+  color: white;
+}
+
+.secondaryBtn {
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.secondaryBtn:hover {
+  background-color: #5a6268;
+  color: white;
+}
