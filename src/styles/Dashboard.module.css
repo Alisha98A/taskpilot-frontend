@@ -5,3 +5,21 @@
   min-height: 100vh;
   font-family: 'Inter', sans-serif;
 }
+
+/* ========== Header Section ========== */
+.dashboardHeader {
+  text-align: left;
+  margin-bottom: 2rem;
+}
+
+.title {
+  font-size: 2rem;
+  color: #1f2937;
+  font-weight: 600;
+}
+
+.subtitle {
+  font-size: 1.125rem;
+  color: #6b7280;
+  margin-top: 0.25rem;
+}
