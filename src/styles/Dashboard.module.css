@@ -1,0 +1,7 @@
+/* ========== Dashboard Wrapper ========== */
+.dashboardWrapper {
+  padding: 2rem;
+  background-color: #f5f7fa;
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+}
