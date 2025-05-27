@@ -1,10 +1,11 @@
 import React from "react";
+import { Container } from "react-bootstrap";
 
 function TaskCreate() {
   return (
-    <div>
+    <Container className="my-4">
       <h2>Create Task</h2>
-    </div>
+    </Container>
   );
 }
 
