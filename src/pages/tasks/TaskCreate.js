@@ -1,7 +1,11 @@
 import React, { useState } from "react";
-import { Container, Form } from "react-bootstrap";
+import { Container, Form, Button } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
+import { axiosReq } from "../../api/axiosDefaults";
 
 function TaskCreate() {
+  const history = useHistory();
+
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -13,10 +17,21 @@ function TaskCreate() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      await axiosReq.post("/api/tasks/", formData);
+      history.push("/tasks");
+    } catch (err) {
+      alert("Failed to create task");
+    }
+  };
+
   return (
     <Container className="my-4">
       <h2>Create Task</h2>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <Form.Group controlId="title">
           <Form.Label>Title</Form.Label>
           <Form.Control
@@ -24,6 +39,7 @@ function TaskCreate() {
             name="title"
             value={formData.title}
             onChange={handleChange}
+            required
           />
         </Form.Group>
 
@@ -47,6 +63,10 @@ function TaskCreate() {
             required
           />
         </Form.Group>
+
+        <Button type="submit" variant="primary">
+          Create Task
+        </Button>
       </Form>
     </Container>
   );
