@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Form } from "react-bootstrap";
 
 function TaskCreate() {
   const [formData, setFormData] = useState({
@@ -7,10 +8,33 @@ function TaskCreate() {
     due_date: "",
   });
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
   return (
-    <div>
-      <h2>Create Task</h2>
-    </div>
+    <Form>
+      <Form.Group controlId="title">
+        <Form.Label>Title</Form.Label>
+        <Form.Control
+          type="text"
+          name="title"
+          value={formData.title}
+          onChange={handleChange}
+        />
+      </Form.Group>
+
+      <Form.Group controlId="description">
+        <Form.Label>Description</Form.Label>
+        <Form.Control
+          as="textarea"
+          name="description"
+          value={formData.description}
+          onChange={handleChange}
+        />
+      </Form.Group>
+    </Form>
   );
 }
 
