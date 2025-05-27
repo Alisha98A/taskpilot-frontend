@@ -6,6 +6,7 @@ import { axiosReq } from "../../api/axiosDefaults";
 function TaskCreate() {
   const history = useHistory();
 
+  // ----- Dropdown options for priority, state, and category -----
   const priorities = [
     { value: "low", label: "Low" },
     { value: "medium", label: "Medium" },
@@ -27,6 +28,7 @@ function TaskCreate() {
     { value: "misc", label: "Miscellaneous" },
   ];
 
+  // ----- Form state management -----
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -34,33 +36,57 @@ function TaskCreate() {
     priority: "medium",
     state: "open",
     category: "misc",
+    attachment: null,
   });
 
+  // ----- Handle input changes for text and date fields -----
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  // ----- Handle dropdown selection changes -----
   const handleSelect = (field) => (eventKey) => {
     setFormData((prev) => ({ ...prev, [field]: eventKey }));
   };
 
+  // ----- Handle file input change -----
+  const handleFileChange = (e) => {
+    setFormData((prev) => ({
+      ...prev,
+      attachment: e.target.files[0] || null,
+    }));
+  };
+
+  // ----- Submit form data to API -----
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const data = new FormData();
+    data.append("title", formData.title);
+    data.append("description", formData.description);
+    data.append("due_date", formData.due_date);
+    data.append("priority", formData.priority);
+    data.append("state", formData.state);
+    data.append("category", formData.category);
+    if (formData.attachment) {
+      data.append("attachment", formData.attachment);
+    }
+
     try {
-      await axiosReq.post("/api/tasks/", formData);
+      await axiosReq.post("/api/tasks/", data);
       history.push("/tasks");
     } catch (err) {
       alert("Failed to create task");
     }
   };
 
+  // ----- JSX UI rendering -----
   return (
     <Container className="my-4">
       <h2>Create Task</h2>
       <Form onSubmit={handleSubmit}>
-        <Form.Group controlId="title">
+        <Form.Group className="mb-3" controlId="title">
           <Form.Label>Title</Form.Label>
           <Form.Control
             type="text"
@@ -71,17 +97,18 @@ function TaskCreate() {
           />
         </Form.Group>
 
-        <Form.Group controlId="description">
+        <Form.Group className="mb-3" controlId="description">
           <Form.Label>Description</Form.Label>
           <Form.Control
             as="textarea"
             name="description"
             value={formData.description}
             onChange={handleChange}
+            rows={3}
           />
         </Form.Group>
 
-        <Form.Group controlId="due_date">
+        <Form.Group className="mb-3" controlId="due_date">
           <Form.Label>Due Date</Form.Label>
           <Form.Control
             type="datetime-local"
@@ -92,10 +119,10 @@ function TaskCreate() {
           />
         </Form.Group>
 
-        <Form.Group controlId="priority">
+        <Form.Group className="mb-3" controlId="priority">
           <Form.Label>Priority</Form.Label>
           <Dropdown onSelect={handleSelect("priority")}>
-            <Dropdown.Toggle variant="secondary">
+            <Dropdown.Toggle variant="secondary" id="dropdown-priority">
               {priorities.find((p) => p.value === formData.priority)?.label}
             </Dropdown.Toggle>
             <Dropdown.Menu>
@@ -108,10 +135,10 @@ function TaskCreate() {
           </Dropdown>
         </Form.Group>
 
-        <Form.Group controlId="state">
+        <Form.Group className="mb-3" controlId="state">
           <Form.Label>State</Form.Label>
           <Dropdown onSelect={handleSelect("state")}>
-            <Dropdown.Toggle variant="secondary">
+            <Dropdown.Toggle variant="secondary" id="dropdown-state">
               {states.find((s) => s.value === formData.state)?.label}
             </Dropdown.Toggle>
             <Dropdown.Menu>
@@ -124,10 +151,10 @@ function TaskCreate() {
           </Dropdown>
         </Form.Group>
 
-        <Form.Group controlId="category">
+        <Form.Group className="mb-3" controlId="category">
           <Form.Label>Category</Form.Label>
           <Dropdown onSelect={handleSelect("category")}>
-            <Dropdown.Toggle variant="secondary">
+            <Dropdown.Toggle variant="secondary" id="dropdown-category">
               {categories.find((c) => c.value === formData.category)?.label}
             </Dropdown.Toggle>
             <Dropdown.Menu>
@@ -138,6 +165,15 @@ function TaskCreate() {
               ))}
             </Dropdown.Menu>
           </Dropdown>
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="attachment">
+          <Form.Label>Attachment</Form.Label>
+          <Form.Control
+            type="file"
+            name="attachment"
+            onChange={handleFileChange}
+          />
         </Form.Group>
 
         <Button type="submit" variant="primary">
