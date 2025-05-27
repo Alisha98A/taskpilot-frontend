@@ -1,11 +1,16 @@
-import React from "react";
-import { Container } from "react-bootstrap";
+import React, { useState } from "react";
 
 function TaskCreate() {
+  const [formData, setFormData] = useState({
+    title: "",
+    description: "",
+    due_date: "",
+  });
+
   return (
-    <Container className="my-4">
+    <div>
       <h2>Create Task</h2>
-    </Container>
+    </div>
   );
 }
 
