@@ -8,11 +8,13 @@ function TaskCreate() {
     due_date: "",
   });
 
+  // ----- Handle input changes for text and date fields -----
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  // ----- JSX UI rendering -----
   return (
     <Form>
       <Form.Group controlId="title">
@@ -32,6 +34,17 @@ function TaskCreate() {
           name="description"
           value={formData.description}
           onChange={handleChange}
+        />
+      </Form.Group>
+
+      <Form.Group className="mb-3" controlId="due_date">
+        <Form.Label>Due Date</Form.Label>
+        <Form.Control
+          type="datetime-local"
+          name="due_date"
+          value={formData.due_date}
+          onChange={handleChange}
+          required
         />
       </Form.Group>
     </Form>
