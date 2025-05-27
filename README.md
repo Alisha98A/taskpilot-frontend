@@ -7,6 +7,21 @@ https://images.unsplash.com/photo-1662408081787-d094790f11dd?q=80&w=2938&auto=fo
 
 Desktop image shown on sign up page was taken from: https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?fit=crop&w=900&q=80
 
+Used this code for TaskCreate.js
+<Dropdown>
+  <Dropdown.Toggle variant="success" id="dropdown-basic">
+    Dropdown Button
+  </Dropdown.Toggle>
+
+  <Dropdown.Menu>
+    <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+    <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+    <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+  </Dropdown.Menu>
+</Dropdown>
+
+
+
 
 Copied this code from React Bootstrap, Navbar component and changed it to fit my project
 <Navbar bg="light" expand="lg">
