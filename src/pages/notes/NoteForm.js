@@ -8,15 +8,18 @@ function NoteForm({
   onSubmit,
   submitLabel = "Submit",
 }) {
+  // Local state for form inputs and error message
   const [body, setBody] = useState(initialBody);
   const [selectedTask, setSelectedTask] = useState(initialTask);
   const [error, setError] = useState(null);
 
+  // Update local state when initial props change (useful for editing)
   useEffect(() => {
     setBody(initialBody);
     setSelectedTask(initialTask);
   }, [initialBody, initialTask]);
 
+  // Form submission handler with validation
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!selectedTask || !body) {
@@ -24,13 +27,16 @@ function NoteForm({
       return;
     }
     setError(null);
+    // Pass data up to parent component
     onSubmit({ task: selectedTask, body });
   };
 
   return (
     <Form onSubmit={handleSubmit}>
+      {/* Display validation error message */}
       {error && <p className="text-danger">{error}</p>}
 
+      {/* Task selection dropdown */}
       <Form.Group controlId="task" className="mb-3">
         <Form.Label>Task</Form.Label>
         <Form.Control
@@ -48,6 +54,7 @@ function NoteForm({
         </Form.Control>
       </Form.Group>
 
+      {/* Note body textarea */}
       <Form.Group controlId="body" className="mb-3">
         <Form.Label>Note Body</Form.Label>
         <Form.Control
@@ -59,6 +66,7 @@ function NoteForm({
         />
       </Form.Group>
 
+      {/* Submit button with customizable label */}
       <Button type="submit">{submitLabel}</Button>
     </Form>
   );
