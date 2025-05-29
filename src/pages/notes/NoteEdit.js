@@ -3,6 +3,7 @@ import { useParams, useHistory } from "react-router-dom";
 import { Container, Alert } from "react-bootstrap";
 import { axiosReq } from "../../api/axiosDefaults";
 import useNoteForm from "../../hooks/useNoteForm";
+import NoteForm from "./NoteForm";
 
 function NoteEdit() {
   const { id } = useParams();
@@ -37,6 +38,15 @@ function NoteEdit() {
       <h2>Edit Note</h2>
       {errors && errors.body && <Alert variant="danger">{errors.body}</Alert>}
       {successMessage && <Alert variant="success">{successMessage}</Alert>}
+      <NoteForm
+        initialBody={body}
+        initialTask={selectedTask}
+        tasks={tasks}
+        errors={errors}
+        onSubmit={handleSubmit}
+        loading={loading}
+        submitLabel="Update Note"
+      />
     </Container>
   );
 }
