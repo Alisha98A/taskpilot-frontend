@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Container, Spinner } from "react-bootstrap";
+import { Container, Spinner, Card } from "react-bootstrap";
 import { axiosReq } from "../../api/axiosDefaults";
 
 function NoteDetail() {
@@ -42,7 +42,21 @@ function NoteDetail() {
 
   return (
     <Container className="my-4">
-      <p>{note.body}</p>
+      <Card>
+        <Card.Body>
+          <Card.Title>Note Details</Card.Title>
+          <Card.Text>{note.body}</Card.Text>
+          <hr />
+          <p>
+            <strong>Date Added:</strong>{" "}
+            {new Date(note.date_added).toLocaleString()}
+          </p>
+          <p>
+            <strong>Last Updated:</strong>{" "}
+            {new Date(note.date_updated).toLocaleString()}
+          </p>
+        </Card.Body>
+      </Card>
     </Container>
   );
 }
