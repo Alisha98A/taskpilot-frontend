@@ -203,3 +203,21 @@ function TaskEdit() {
       alert("Failed to update task");
     }
   };
+
+  // Notes CRUD
+  const handleAddNote = async () => {
+    const noteContent = formData.notes.trim();
+    if (!noteContent) return;
+
+    try {
+      const { data } = await axiosReq.post("/api/notes/", {
+        task: taskId,
+        body: noteContent,
+      });
+      setNotesList((prev) => [...prev, data]);
+      setFormData((prev) => ({ ...prev, notes: "" }));
+    } catch (err) {
+      alert("Failed to add note");
+      console.error(err);
+    }
+  };
