@@ -11,9 +11,13 @@ const useTaskForm = (taskId, history) => {
     notes: "",
   });
 
+  const handleChange = ({ target: { name, value } }) =>
+    setFormData((prev) => ({ ...prev, [name]: value }));
+
   return {
     formData,
     setFormData,
+    handleChange,
   };
 };
 
