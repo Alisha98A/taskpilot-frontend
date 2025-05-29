@@ -283,6 +283,19 @@ function TaskEdit() {
             rows={3}
           />
         </Form.Group>
+
+        {/* Due Date */}
+        <Form.Group className="mb-3" controlId="due_date">
+          <Form.Label>Due Date</Form.Label>
+          <Form.Control
+            type="date"
+            name="due_date"
+            value={formData.due_date.slice(0, 10)}
+            onChange={handleChange}
+            min={getMinDate()}
+            required
+          />
+        </Form.Group>
       </Form>
     </Container>
   );
