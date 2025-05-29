@@ -21,6 +21,19 @@ function NoteDelete() {
     fetchNote();
   }, [id]);
 
+  const handleDelete = async () => {
+    try {
+      await axiosReq.delete(`/api/notes/${id}/`);
+      if (taskId) {
+        history.push(`/tasks/${taskId}`);
+      } else {
+        history.push("/notes");
+      }
+    } catch (err) {
+      setError("Failed to delete note.");
+    }
+  };
+
   return (
     <Container className="my-4">
       <h2>Delete Note</h2>
