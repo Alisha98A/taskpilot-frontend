@@ -236,4 +236,16 @@ function TaskEdit() {
     setEditingNoteId(noteId);
     setEditingNoteBody(currentBody);
   };
+
+const handleSaveNote = async () => {
+  try {
+    await axiosReq.put(`/api/notes/${editingNoteId}/`, {
+      task: taskId,
+      body: editingNoteBody,
+    });
+  } catch (err) {
+    alert("Failed to update note");
+    console.error(err);
   }
+};
+}
