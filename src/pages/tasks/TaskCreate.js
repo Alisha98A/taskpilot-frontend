@@ -36,7 +36,6 @@ function TaskCreate() {
     priority: "medium",
     state: "open",
     category: "misc",
-    attachment: null,
   });
 
   // ----- Handle input changes for text and date fields -----
@@ -50,14 +49,6 @@ function TaskCreate() {
     setFormData((prev) => ({ ...prev, [field]: eventKey }));
   };
 
-  // ----- Handle file input change -----
-  const handleFileChange = (e) => {
-    setFormData((prev) => ({
-      ...prev,
-      attachment: e.target.files[0] || null,
-    }));
-  };
-
   // ----- Submit form data to API -----
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -69,9 +60,6 @@ function TaskCreate() {
     data.append("priority", formData.priority);
     data.append("state", formData.state);
     data.append("category", formData.category);
-    if (formData.attachment) {
-      data.append("attachment", formData.attachment);
-    }
 
     try {
       await axiosReq.post("/api/tasks/", data);
@@ -167,14 +155,6 @@ function TaskCreate() {
           </Dropdown>
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="attachment">
-          <Form.Label>Attachment</Form.Label>
-          <Form.Control
-            type="file"
-            name="attachment"
-            onChange={handleFileChange}
-          />
-        </Form.Group>
 
         <Button type="submit" variant="primary">
           Create Task
