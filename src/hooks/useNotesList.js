@@ -4,6 +4,7 @@ import { axiosReq } from "../api/axiosDefaults";
 const useNotesList = () => {
   const [notes, setNotes] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchNotes = async () => {
@@ -11,8 +12,9 @@ const useNotesList = () => {
         const res = await axiosReq.get("/api/notes/");
         const data = res.data.results || res.data;
         setNotes(data);
+        setError(null);
       } catch {
-        // Error handling to be added
+        setError("Failed to load notes. Please try again later.");
       } finally {
         setLoading(false);
       }
@@ -21,7 +23,7 @@ const useNotesList = () => {
     fetchNotes();
   }, []);
 
-  return { notes, loading };
+  return { notes, loading, error };
 };
 
 export default useNotesList;
