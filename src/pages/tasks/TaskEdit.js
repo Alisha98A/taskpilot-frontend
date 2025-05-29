@@ -130,3 +130,23 @@ const NoteItem = ({
     </Row>
   </ListGroup.Item>
 );
+
+function TaskEdit() {
+  const { id } = useParams();
+  const taskId = Number(id);
+  const history = useHistory();
+
+  const [formData, setFormData] = useState({
+    title: "",
+    description: "",
+    due_date: "",
+    priority: "medium",
+    state: "open",
+    category: "misc",
+    notes: "",
+  });
+
+  const [notesList, setNotesList] = useState([]);
+  const [editingNoteId, setEditingNoteId] = useState(null);
+  const [editingNoteBody, setEditingNoteBody] = useState("");
+}
