@@ -43,3 +43,27 @@ const getMinDate = () => {
   const d = new Date();
   return d.toISOString().slice(0, 10);
 };
+
+const DropdownSelector = ({
+  label,
+  options,
+  selected,
+  onSelect,
+  controlId,
+}) => (
+  <Form.Group className="mb-3" controlId={controlId}>
+    <Form.Label>{label}</Form.Label>
+    <Dropdown onSelect={onSelect}>
+      <Dropdown.Toggle variant="secondary">
+        {options.find((o) => o.value === selected)?.label || "Select"}
+      </Dropdown.Toggle>
+      <Dropdown.Menu>
+        {options.map(({ value, label }) => (
+          <Dropdown.Item key={value} eventKey={value}>
+            {label}
+          </Dropdown.Item>
+        ))}
+      </Dropdown.Menu>
+    </Dropdown>
+  </Form.Group>
+);
