@@ -31,6 +31,25 @@ const useNoteForm = (noteId = null) => {
     fetchTasks();
   }, [noteId]);
 
+  // Fetch note data for editing
+  useEffect(() => {
+    if (!noteId) return;
+    setLoading(true);
+    const fetchNote = async () => {
+      try {
+        const { data } = await axiosReq.get(`/api/notes/${noteId}/`);
+        setBody(data.body);
+        setSelectedTask(data.task.id.toString());
+        setErrors(null);
+      } catch {
+        setErrors({ fetch: "Failed to load note." });
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchNote();
+  }, [noteId]);
+
   return {};
 };
 
