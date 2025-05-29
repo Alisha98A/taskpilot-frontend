@@ -179,4 +179,27 @@ function TaskEdit() {
 
   const handleSelect = (field) => (eventKey) =>
     setFormData((prev) => ({ ...prev, [field]: eventKey }));
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const payload = {
+        title: formData.title,
+        description: formData.description,
+        priority: formData.priority,
+        state: formData.state,
+        category: formData.category,
+        due_date: formData.due_date
+          ? new Date(formData.due_date).toISOString()
+          : null,
+      };
+
+      await axiosReq.put(`/api/tasks/${id}/`, payload);
+      history.push("/tasks");
+    } catch (err) {
+      if (err.response) {
+        console.error("Response data:", err.response.data);
+      }
+      alert("Failed to update task");
+    }
   };
