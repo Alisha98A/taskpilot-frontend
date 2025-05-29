@@ -172,4 +172,11 @@ function TaskEdit() {
   useEffect(() => {
     fetchTask();
   }, [fetchTask]);
-}
+
+  // Universal form handler
+  const handleChange = ({ target: { name, value } }) =>
+    setFormData((prev) => ({ ...prev, [name]: value }));
+
+  const handleSelect = (field) => (eventKey) =>
+    setFormData((prev) => ({ ...prev, [field]: eventKey }));
+  };
