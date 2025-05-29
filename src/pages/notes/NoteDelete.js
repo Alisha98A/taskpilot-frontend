@@ -24,6 +24,7 @@ function NoteDelete() {
   const handleDelete = async () => {
     try {
       await axiosReq.delete(`/api/notes/${id}/`);
+      // Redirect to related task page if taskId available, else notes list
       if (taskId) {
         history.push(`/tasks/${taskId}`);
       } else {
