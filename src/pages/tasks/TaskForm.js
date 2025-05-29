@@ -40,7 +40,7 @@ const DropdownSelector = ({ label, options, selected, onSelect, controlId }) => 
   </Form.Group>
 );
 
-function TaskForm({ formData, handleChange }) {
+function TaskForm({ formData, handleChange, getMinDate }) {
   return (
     <Form>
       <Form.Group className="mb-3" controlId="title">
@@ -62,6 +62,18 @@ function TaskForm({ formData, handleChange }) {
           name="description"
           value={formData.description}
           onChange={handleChange}
+        />
+      </Form.Group>
+
+      <Form.Group className="mb-3" controlId="due_date">
+        <Form.Label>Due Date</Form.Label>
+        <Form.Control
+          type="date"
+          name="due_date"
+          value={formData.due_date || ""}
+          onChange={handleChange}
+          min={getMinDate()}
+          required
         />
       </Form.Group>
     </Form>
