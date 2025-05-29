@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 
-function NoteForm() {
+function NoteForm({ tasks = [], onSubmit }) {
   const [body, setBody] = useState("");
   const [selectedTask, setSelectedTask] = useState("");
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSubmit({ task: selectedTask, body });
+  };
+
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <Form.Group controlId="task" className="mb-3">
         <Form.Label>Task</Form.Label>
         <Form.Control
@@ -16,6 +21,11 @@ function NoteForm() {
           required
         >
           <option value="">Select a task</option>
+          {tasks.map((task) => (
+            <option key={task.id} value={task.id}>
+              {task.title}
+            </option>
+          ))}
         </Form.Control>
       </Form.Group>
 
