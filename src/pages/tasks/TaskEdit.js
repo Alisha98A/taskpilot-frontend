@@ -231,4 +231,9 @@ function TaskEdit() {
       console.error(err);
     }
   };
-}
+
+  const handleEditNote = (noteId, currentBody) => {
+    setEditingNoteId(noteId);
+    setEditingNoteBody(currentBody);
+  };
+  }
