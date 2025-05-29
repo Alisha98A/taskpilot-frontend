@@ -4,14 +4,22 @@ import { Form, Button } from "react-bootstrap";
 function NoteForm({ tasks = [], onSubmit }) {
   const [body, setBody] = useState("");
   const [selectedTask, setSelectedTask] = useState("");
+  const [error, setError] = useState(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!selectedTask || !body) {
+      setError("Both fields are required.");
+      return;
+    }
+    setError(null);
     onSubmit({ task: selectedTask, body });
   };
 
   return (
     <Form onSubmit={handleSubmit}>
+      {error && <p className="text-danger">{error}</p>}
+
       <Form.Group controlId="task" className="mb-3">
         <Form.Label>Task</Form.Label>
         <Form.Control
