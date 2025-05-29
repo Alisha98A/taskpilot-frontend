@@ -1,8 +1,20 @@
 import axios from "axios";
 
-axios.defaults.baseURL = 'https://taskpilot-backend-6ee557f05c5b.herokuapp.com/';
-axios.defaults.headers.post['Content-Type'] = 'multipart/form-data';
-axios.defaults.withCredentials = true;
+const BASE_URL = 'https://taskpilot-backend-6ee557f05c5b.herokuapp.com/';
 
-export const axiosReq = axios.create();
-export const axiosRes = axios.create();
+export const axiosReq = axios.create({
+  baseURL: BASE_URL,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  withCredentials: true,
+});
+
+
+export const axiosRes = axios.create({
+  baseURL: BASE_URL,
+  headers: {
+    'Content-Type': 'multipart/form-data',
+  },
+  withCredentials: true,
+});
