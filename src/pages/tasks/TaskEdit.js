@@ -67,3 +67,66 @@ const DropdownSelector = ({
     </Dropdown>
   </Form.Group>
 );
+
+const NoteItem = ({
+  note,
+  isEditing,
+  editingBody,
+  onEditClick,
+  onDeleteClick,
+  onChangeBody,
+  onSave,
+  onCancel,
+}) => (
+  <ListGroup.Item key={note.id}>
+    <Row>
+      <Col xs={9}>
+        {isEditing ? (
+          <Form.Control
+            as="textarea"
+            rows={2}
+            value={editingBody}
+            onChange={(e) => onChangeBody(e.target.value)}
+          />
+        ) : (
+          <span>{note.body}</span>
+        )}
+      </Col>
+      <Col xs={3} className="text-end">
+        {isEditing ? (
+          <>
+            <Button
+              variant="success"
+              size="sm"
+              className="me-2"
+              onClick={onSave}
+            >
+              Save
+            </Button>
+            <Button variant="secondary" size="sm" onClick={onCancel}>
+              Cancel
+            </Button>
+          </>
+        ) : (
+          <>
+            <Button
+              variant="outline-primary"
+              size="sm"
+              className="me-2"
+              onClick={() => onEditClick(note.id, note.body)}
+            >
+              Edit
+            </Button>
+            <Button
+              variant="outline-danger"
+              size="sm"
+              onClick={() => onDeleteClick(note.id)}
+            >
+              Delete
+            </Button>
+          </>
+        )}
+      </Col>
+    </Row>
+  </ListGroup.Item>
+);
