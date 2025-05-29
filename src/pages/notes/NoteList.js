@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import {
   Container,
   Card,
+  Button,
   Alert,
   Row,
   Col,
@@ -24,7 +25,13 @@ function NoteList() {
 
   return (
     <Container className="my-4">
-      <h2>Notes</h2>
+      <div className="d-flex justify-content-between align-items-center mb-4">
+        <h2>Notes</h2>
+        <Button as={Link} to="/notes/create" variant="primary">
+          Add Note
+        </Button>
+      </div>
+
       {error && <Alert variant="danger">{error}</Alert>}
 
       {notes.length === 0 ? (
