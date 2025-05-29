@@ -221,3 +221,14 @@ function TaskEdit() {
       console.error(err);
     }
   };
+
+  const handleDeleteNote = async (noteId) => {
+    try {
+      await axiosReq.delete(`/api/notes/${noteId}/`);
+      setNotesList((prev) => prev.filter(({ id }) => id !== noteId));
+    } catch (err) {
+      alert("Failed to delete note");
+      console.error(err);
+    }
+  };
+}
