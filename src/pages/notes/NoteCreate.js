@@ -1,7 +1,8 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { Container} from "react-bootstrap";
+import { Container, Alert } from "react-bootstrap";
 import { axiosReq } from "../../api/axiosDefaults";
+import NoteForm from "./NoteForm";
 import useNoteForm from "../../hooks/useNoteForm";
 
 function NoteCreate() {
@@ -34,6 +35,19 @@ function NoteCreate() {
   return (
     <Container className="my-4">
       <h2>Add Note</h2>
+
+      {/* Show error or success outside the form as a fallback */}
+      {errors?.submit && <Alert variant="danger">{errors.submit}</Alert>}
+      {successMessage && <Alert variant="success">{successMessage}</Alert>}
+
+      <NoteForm
+        tasks={tasks}
+        onSubmit={handleCreate}
+        submitLabel="Add Note"
+        error={errors?.form}
+        successMessage={successMessage}
+        loading={loading}
+      />
     </Container>
   );
 }
