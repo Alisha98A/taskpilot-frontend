@@ -40,8 +40,32 @@ const DropdownSelector = ({ label, options, selected, onSelect, controlId }) => 
   </Form.Group>
 );
 
-function TaskForm() {
-  return <div>Task Form Component</div>;
+function TaskForm({ formData, handleChange }) {
+  return (
+    <Form>
+      <Form.Group className="mb-3" controlId="title">
+        <Form.Label>Title</Form.Label>
+        <Form.Control
+          type="text"
+          name="title"
+          value={formData.title}
+          onChange={handleChange}
+          required
+        />
+      </Form.Group>
+
+      <Form.Group className="mb-3" controlId="description">
+        <Form.Label>Description</Form.Label>
+        <Form.Control
+          as="textarea"
+          rows={3}
+          name="description"
+          value={formData.description}
+          onChange={handleChange}
+        />
+      </Form.Group>
+    </Form>
+  );
 }
 
 export default TaskForm;
