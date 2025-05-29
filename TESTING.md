@@ -139,3 +139,37 @@ This generated a final migration (e.g., 0006_remove_task_attachment) that proper
 
 📌 Remaining Issue
 	•	validators.py cannot be deleted yet, as it still causes an error when removed. This file will be reviewed and cleaned up in a future update. Same goes for uninstalling cloudinary. 
+
+
+
+
+
+Bug: Task Update API - 400 Bad Request on due_date
+
+Issue
+
+When updating a task via the API, the backend returned a 400 Bad Request error specifically related to the due_date field. The API response indicated a validation error with the due_date, even though the date appeared to be correctly formatted in the frontend payload.
+
+Root Cause
+
+The backend model expected due_date to be a DateTimeField, requiring a full ISO 8601 datetime string (including both date and time components). Initially, the frontend was sending only a date string (e.g., "2025-06-01"), which was insufficient for the model validation.
+
+Solution
+
+The frontend was updated to send a properly formatted ISO 8601 datetime string with time included (e.g., "2025-06-01T00:00:00" or an equivalent UTC time). This ensured that the due_date field matched the backend expectations.
+
+Example of the fixed payload:
+
+{
+  "title": "Cook pasta",
+  "description": "Find a recipe",
+  "priority": "medium",
+  "state": "open",
+  "category": "misc",
+  "due_date": "2025-06-01T00:00:00"
+}
+
+Key Takeaways
+	•	Always ensure date/time fields match the backend model’s required format.
+	•	Use ISO 8601 datetime strings for DateTimeField in Django REST Framework.
+	•	Check backend serializer error messages carefully — they often pinpoint the exact field causing the validation issue.
