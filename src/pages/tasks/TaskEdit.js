@@ -31,3 +31,15 @@ const OPTIONS = {
     { value: "misc", label: "Miscellaneous" },
   ],
 };
+
+const formatDateForInput = (isoString) => {
+  if (!isoString) return "";
+  const date = new Date(isoString);
+  const tzOffset = date.getTimezoneOffset() * 60000;
+  return new Date(date.getTime() - tzOffset).toISOString().slice(0, 16);
+};
+
+const getMinDate = () => {
+  const d = new Date();
+  return d.toISOString().slice(0, 10);
+};
