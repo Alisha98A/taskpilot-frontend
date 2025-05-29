@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { Container, Alert } from "react-bootstrap";
+import { axiosReq } from "../../api/axiosDefaults";
 import useNoteForm from "../../hooks/useNoteForm";
 
 function NoteEdit() {
@@ -17,6 +18,19 @@ function NoteEdit() {
   } = useNoteForm(id);
 
   const [successMessage, setSuccessMessage] = useState(null);
+
+  const handleSubmit = async ({ task, body }) => {
+    try {
+      await axiosReq.put(`/api/notes/${id}/`, { task, body });
+      setSuccessMessage("Note updated successfully!");
+      setErrors(null);
+      setTimeout(() => history.push(`/tasks/${task}`), 1500);
+    } catch (err) {
+      setErrors({ body: "Failed to update note." });
+      setSuccessMessage(null);
+      console.error(err.response?.data || err);
+    }
+  };
 
   return (
     <Container className="my-4">
