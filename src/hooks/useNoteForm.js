@@ -50,6 +50,14 @@ const useNoteForm = (noteId = null) => {
     fetchNote();
   }, [noteId]);
 
+  // Clear success message after 2 seconds
+  useEffect(() => {
+    if (successMessage) {
+      const timer = setTimeout(() => setSuccessMessage(null), 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [successMessage]);
+
   return {};
 };
 
