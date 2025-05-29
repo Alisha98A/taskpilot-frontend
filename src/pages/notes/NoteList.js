@@ -10,6 +10,7 @@ import {
   Spinner,
 } from "react-bootstrap";
 import useNotesList from "../../hooks/useNotesList";
+import styles from "../../styles/NoteList.module.css";
 
 function NoteList() {
   const { notes, loading, error } = useNotesList();
