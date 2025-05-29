@@ -149,4 +149,23 @@ function TaskEdit() {
   const [notesList, setNotesList] = useState([]);
   const [editingNoteId, setEditingNoteId] = useState(null);
   const [editingNoteBody, setEditingNoteBody] = useState("");
+
+  const fetchTask = useCallback(async () => {
+    try {
+      const { data } = await axiosReq.get(`/api/tasks/${id}/`);
+      setFormData({
+        title: data.title,
+        description: data.description,
+        due_date: formatDateForInput(data.due_date),
+        priority: data.priority,
+        state: data.state,
+        category: data.category,
+        notes: "",
+      });
+      setNotesList(data.notes || []);
+    } catch (err) {
+      alert("Failed to fetch task and notes");
+      console.error(err);
+    }
+  }, [id]);
 }
