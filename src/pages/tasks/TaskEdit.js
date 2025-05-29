@@ -256,4 +256,13 @@ function TaskEdit() {
     }
   };
 
-};
+  return (
+  <Container className="my-4">
+    <h2>Edit Task</h2>
+    <Form onSubmit={handleSubmit}>
+    </Form>
+  </Container>
+);
+}
+
+export default TaskEdit;
