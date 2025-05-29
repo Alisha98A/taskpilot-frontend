@@ -7,23 +7,34 @@ const useNotesList = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    let isMounted = true;
+
     const fetchNotes = async () => {
       try {
         const res = await axiosReq.get("/api/notes/");
         const data = res.data.results || res.data;
-        setNotes(data);
-        setError(null);
+        if (isMounted) {
+          setNotes(data);
+          setLoading(false);
+          setError(null);
+        }
       } catch {
-        setError("Failed to load notes. Please try again later.");
-      } finally {
-        setLoading(false);
+        if (isMounted) {
+          setError("Failed to load notes. Please try again later.");
+          setLoading(false);
+        }
       }
     };
 
     fetchNotes();
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
-  return { notes, loading, error };
+  // Return setters so calling components can update state & errors
+  return { notes, setNotes, loading, error, setError };
 };
 
 export default useNotesList;
