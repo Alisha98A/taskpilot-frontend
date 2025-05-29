@@ -257,12 +257,35 @@ function TaskEdit() {
   };
 
   return (
-  <Container className="my-4">
-    <h2>Edit Task</h2>
-    <Form onSubmit={handleSubmit}>
-    </Form>
-  </Container>
-);
+    <Container className="my-4">
+      <h2>Edit Task</h2>
+      <Form onSubmit={handleSubmit}>
+        {/* Title */}
+        <Form.Group className="mb-3" controlId="title">
+          <Form.Label>Title</Form.Label>
+          <Form.Control
+            type="text"
+            name="title"
+            value={formData.title}
+            onChange={handleChange}
+            required
+          />
+        </Form.Group>
+
+        {/* Description */}
+        <Form.Group className="mb-3" controlId="description">
+          <Form.Label>Description</Form.Label>
+          <Form.Control
+            as="textarea"
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
+            rows={3}
+          />
+        </Form.Group>
+      </Form>
+    </Container>
+  );
 }
 
 export default TaskEdit;
