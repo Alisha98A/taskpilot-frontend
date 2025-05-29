@@ -339,6 +339,28 @@ function TaskEdit() {
           Save Changes
         </Button>
       </Form>
+
+      {/* Notes List */}
+      <h3 className="mt-5">All Notes</h3>
+      {notesList.length === 0 ? (
+        <p>No notes yet...</p>
+      ) : (
+        <ListGroup>
+          {notesList.map((note) => (
+            <NoteItem
+              key={note.id}
+              note={note}
+              isEditing={editingNoteId === note.id}
+              editingBody={editingNoteBody}
+              onEditClick={handleEditNote}
+              onDeleteClick={handleDeleteNote}
+              onChangeBody={setEditingNoteBody}
+              onSave={handleSaveNote}
+              onCancel={() => setEditingNoteId(null)}
+            />
+          ))}
+        </ListGroup>
+      )}
     </Container>
   );
 }
