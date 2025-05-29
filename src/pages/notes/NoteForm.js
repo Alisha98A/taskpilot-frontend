@@ -1,10 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
 
-function NoteForm({ tasks = [], onSubmit }) {
-  const [body, setBody] = useState("");
-  const [selectedTask, setSelectedTask] = useState("");
+function NoteForm({
+  initialBody = "",
+  initialTask = "",
+  tasks = [],
+  onSubmit,
+  submitLabel = "Submit",
+}) {
+  const [body, setBody] = useState(initialBody);
+  const [selectedTask, setSelectedTask] = useState(initialTask);
   const [error, setError] = useState(null);
+
+  useEffect(() => {
+    setBody(initialBody);
+    setSelectedTask(initialTask);
+  }, [initialBody, initialTask]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -48,7 +59,7 @@ function NoteForm({ tasks = [], onSubmit }) {
         />
       </Form.Group>
 
-      <Button type="submit">Submit</Button>
+      <Button type="submit">{submitLabel}</Button>
     </Form>
   );
 }
