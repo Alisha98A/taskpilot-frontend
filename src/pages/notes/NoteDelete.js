@@ -39,6 +39,12 @@ function NoteDelete() {
       <h2>Delete Note</h2>
       {error && <Alert variant="danger">{error}</Alert>}
       <p>Are you sure you want to delete this note?</p>
+      <Button variant="danger" onClick={handleDelete} className="me-2">
+        Delete
+      </Button>
+      <Button variant="secondary" onClick={() => history.goBack()}>
+        Cancel
+      </Button>
     </Container>
   );
 }
