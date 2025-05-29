@@ -53,10 +53,13 @@ function TaskCreate() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Convert date only 'yyyy-mm-dd' to ISO datetime string at midnight UTC
+    const dueDateValue = formData.due_date ? formData.due_date + "T00:00:00Z" : "";
+
     const data = new FormData();
     data.append("title", formData.title);
     data.append("description", formData.description);
-    data.append("due_date", formData.due_date);
+    data.append("due_date", dueDateValue);
     data.append("priority", formData.priority);
     data.append("state", formData.state);
     data.append("category", formData.category);
@@ -68,6 +71,9 @@ function TaskCreate() {
       alert("Failed to create task");
     }
   };
+
+  // Get today's date in yyyy-mm-dd format for min attribute on input
+  const todayDate = new Date().toISOString().split("T")[0];
 
   // ----- JSX UI rendering -----
   return (
@@ -99,10 +105,11 @@ function TaskCreate() {
         <Form.Group className="mb-3" controlId="due_date">
           <Form.Label>Due Date</Form.Label>
           <Form.Control
-            type="datetime-local"
+            type="date"
             name="due_date"
             value={formData.due_date}
             onChange={handleChange}
+            min={todayDate}
             required
           />
         </Form.Group>
@@ -154,7 +161,6 @@ function TaskCreate() {
             </Dropdown.Menu>
           </Dropdown>
         </Form.Group>
-
 
         <Button type="submit" variant="primary">
           Create Task
