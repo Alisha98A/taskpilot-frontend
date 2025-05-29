@@ -25,8 +25,8 @@ function NoteDetail() {
 
   if (loading) {
     return (
-      <Container className="text-center my-4">
-        <Spinner animation="border" />
+      <Container className="text-center my-4" aria-live="polite">
+        <Spinner animation="border" role="status" aria-label="Loading note" />
         <p>Loading note...</p>
       </Container>
     );
@@ -34,7 +34,7 @@ function NoteDetail() {
 
   if (error) {
     return (
-      <Container className="my-4">
+      <Container className="my-4" aria-live="polite">
         <p className="text-danger">{error}</p>
       </Container>
     );
@@ -55,7 +55,9 @@ function NoteDetail() {
           <Card.Title>
             Note on:{" "}
             {note.task ? (
-              <Link to={`/tasks/${note.task.id}`}>{note.task.title}</Link>
+              <Link to={`/tasks/${note.task.id}`} aria-label={`Go to task: ${note.task.title}`}>
+                {note.task.title}
+              </Link>
             ) : (
               "Unknown Task"
             )}
@@ -71,10 +73,10 @@ function NoteDetail() {
             {new Date(note.date_updated).toLocaleString()}
           </p>
           <div className="d-flex justify-content-between">
-            <Link to={`/notes/${id}/edit`} className="btn btn-primary">
+            <Link to={`/notes/${id}/edit`} className="btn btn-primary" aria-label="Edit this note">
               Edit Note
             </Link>
-            <Link to={`/notes/${id}/delete`} className="btn btn-danger">
+            <Link to={`/notes/${id}/delete`} className="btn btn-danger" aria-label="Delete this note">
               Delete Note
             </Link>
           </div>
