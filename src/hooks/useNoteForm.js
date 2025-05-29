@@ -58,7 +58,18 @@ const useNoteForm = (noteId = null) => {
     }
   }, [successMessage]);
 
-  return {};
+  return {
+    body,
+    setBody,
+    selectedTask,
+    setSelectedTask,
+    tasks,
+    errors,
+    setErrors,
+    successMessage,
+    setSuccessMessage,
+    loading,
+  };
 };
 
 export default useNoteForm;
