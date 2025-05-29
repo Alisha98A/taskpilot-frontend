@@ -296,6 +296,22 @@ function TaskEdit() {
             required
           />
         </Form.Group>
+
+        {/* Dropdowns */}
+        {[
+          { label: "Priority", field: "priority", options: OPTIONS.PRIORITIES },
+          { label: "State", field: "state", options: OPTIONS.STATES },
+          { label: "Category", field: "category", options: OPTIONS.CATEGORIES },
+        ].map(({ label, field, options }) => (
+          <DropdownSelector
+            key={field}
+            label={label}
+            options={options}
+            selected={formData[field]}
+            onSelect={handleSelect(field)}
+            controlId={field}
+          />
+        ))}
       </Form>
     </Container>
   );
