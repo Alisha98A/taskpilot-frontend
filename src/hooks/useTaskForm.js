@@ -32,12 +32,15 @@ const useTaskForm = (taskId, history) => {
     }
   };
 
+  const getMinDate = () => new Date().toISOString().slice(0, 10);
+
   return {
     formData,
     setFormData,
     handleChange,
     handleSelect,
     handleSubmit,
+    getMinDate,
   };
 };
 
