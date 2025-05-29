@@ -237,15 +237,23 @@ function TaskEdit() {
     setEditingNoteBody(currentBody);
   };
 
-const handleSaveNote = async () => {
-  try {
-    await axiosReq.put(`/api/notes/${editingNoteId}/`, {
-      task: taskId,
-      body: editingNoteBody,
-    });
-  } catch (err) {
-    alert("Failed to update note");
-    console.error(err);
-  }
+  const handleSaveNote = async () => {
+    try {
+      await axiosReq.put(`/api/notes/${editingNoteId}/`, {
+        task: taskId,
+        body: editingNoteBody,
+      });
+      setNotesList((prev) =>
+        prev.map((note) =>
+          note.id === editingNoteId ? { ...note, body: editingNoteBody } : note
+        )
+      );
+      setEditingNoteId(null);
+      setEditingNoteBody("");
+    } catch (err) {
+      alert("Failed to update note");
+      console.error(err);
+    }
+  };
+
 };
-}
