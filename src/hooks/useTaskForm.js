@@ -14,10 +14,14 @@ const useTaskForm = (taskId, history) => {
   const handleChange = ({ target: { name, value } }) =>
     setFormData((prev) => ({ ...prev, [name]: value }));
 
+  const handleSelect = (field) => (eventKey) =>
+    setFormData((prev) => ({ ...prev, [field]: eventKey }));
+
   return {
     formData,
     setFormData,
     handleChange,
+    handleSelect,
   };
 };
 
