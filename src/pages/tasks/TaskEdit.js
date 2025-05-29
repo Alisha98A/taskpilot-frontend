@@ -312,6 +312,28 @@ function TaskEdit() {
             controlId={field}
           />
         ))}
+
+        {/* Add Note */}
+        <Form.Group className="mb-3" controlId="notes">
+          <Form.Label>Add a Note</Form.Label>
+          <Form.Control
+            as="textarea"
+            name="notes"
+            value={formData.notes}
+            onChange={handleChange}
+            rows={2}
+            placeholder="Type a note and press Enter or click Add"
+            onKeyDown={(e) => {
+              if (e.key === "Enter" && !e.shiftKey) {
+                e.preventDefault();
+                handleAddNote();
+              }
+            }}
+          />
+          <Button className="mt-2" onClick={handleAddNote} variant="secondary">
+            Add Note
+          </Button>
+        </Form.Group>
       </Form>
     </Container>
   );
