@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
-import { Container } from "react-bootstrap";
+import { Container, Alert } from "react-bootstrap";
 import useNoteForm from "../../hooks/useNoteForm";
 
 function NoteEdit() {
@@ -16,9 +16,13 @@ function NoteEdit() {
     loading,
   } = useNoteForm(id);
 
+  const [successMessage, setSuccessMessage] = useState(null);
+
   return (
     <Container className="my-4">
       <h2>Edit Note</h2>
+      {errors && errors.body && <Alert variant="danger">{errors.body}</Alert>}
+      {successMessage && <Alert variant="success">{successMessage}</Alert>}
     </Container>
   );
 }
