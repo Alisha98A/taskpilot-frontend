@@ -168,4 +168,8 @@ function TaskEdit() {
       console.error(err);
     }
   }, [id]);
+
+  useEffect(() => {
+    fetchTask();
+  }, [fetchTask]);
 }
