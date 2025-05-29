@@ -37,6 +37,8 @@ function NoteDelete() {
   return (
     <Container className="my-4">
       <h2>Delete Note</h2>
+      {error && <Alert variant="danger">{error}</Alert>}
+      <p>Are you sure you want to delete this note?</p>
     </Container>
   );
 }
