@@ -9,3 +9,8 @@ export function formatDateForInput(dateString) {
 
   return `${year}-${month}-${day}`;
 }
+
+export const getMinDate = () => {
+  const d = new Date();
+  return d.toISOString().slice(0, 10);
+};
