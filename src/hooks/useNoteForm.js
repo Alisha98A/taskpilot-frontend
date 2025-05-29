@@ -15,6 +15,22 @@ const useNoteForm = (noteId = null) => {
   // Loading state
   const [loading, setLoading] = useState(false);
 
+  // Load tasks on mount, select first task if no noteId provided
+  useEffect(() => {
+    const fetchTasks = async () => {
+      try {
+        const { data } = await axiosReq.get("/api/tasks/");
+        setTasks(data.results);
+        if (!noteId && data.results.length > 0) {
+          setSelectedTask(data.results[0].id.toString());
+        }
+      } catch {
+        setErrors({ task: "Failed to load tasks." });
+      }
+    };
+    fetchTasks();
+  }, [noteId]);
+
   return {};
 };
 
