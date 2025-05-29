@@ -18,6 +18,8 @@ function NoteList() {
     <Container className="my-4">
       <h2>Notes</h2>
       {error && <Alert variant="danger">{error}</Alert>}
+
+      {notes.length === 0 ? <p>No notes found. Start by adding one!</p> : null}
     </Container>
   );
 }
