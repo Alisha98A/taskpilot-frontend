@@ -25,10 +25,16 @@ const OPTIONS = {
 const DropdownSelector = ({ label, options, selected, onSelect, controlId }) => (
   <Form.Group className="mb-3" controlId={controlId}>
     <Form.Label>{label}</Form.Label>
-    <Dropdown>
-      <Dropdown.Toggle variant="secondary">Select</Dropdown.Toggle>
+    <Dropdown onSelect={onSelect}>
+      <Dropdown.Toggle variant="secondary">
+        {options.find((o) => o.value === selected)?.label || "Select"}
+      </Dropdown.Toggle>
       <Dropdown.Menu>
-        {/* Options go here */}
+        {options.map(({ value, label }) => (
+          <Dropdown.Item key={value} eventKey={value}>
+            {label}
+          </Dropdown.Item>
+        ))}
       </Dropdown.Menu>
     </Dropdown>
   </Form.Group>
