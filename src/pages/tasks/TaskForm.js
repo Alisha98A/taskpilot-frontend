@@ -22,6 +22,18 @@ const OPTIONS = {
   ],
 };
 
+const DropdownSelector = ({ label, options, selected, onSelect, controlId }) => (
+  <Form.Group className="mb-3" controlId={controlId}>
+    <Form.Label>{label}</Form.Label>
+    <Dropdown>
+      <Dropdown.Toggle variant="secondary">Select</Dropdown.Toggle>
+      <Dropdown.Menu>
+        {/* Options go here */}
+      </Dropdown.Menu>
+    </Dropdown>
+  </Form.Group>
+);
+
 function TaskForm() {
   return <div>Task Form Component</div>;
 }
