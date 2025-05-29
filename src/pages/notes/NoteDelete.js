@@ -9,6 +9,18 @@ function NoteDelete() {
   const [error, setError] = useState(null);
   const [taskId, setTaskId] = useState(null);
 
+  useEffect(() => {
+    const fetchNote = async () => {
+      try {
+        const { data } = await axiosReq.get(`/api/notes/${id}/`);
+        setTaskId(data.task.id);
+      } catch (err) {
+        setError("Failed to load note.");
+      }
+    };
+    fetchNote();
+  }, [id]);
+
   return (
     <Container className="my-4">
       <h2>Delete Note</h2>
