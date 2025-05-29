@@ -173,3 +173,19 @@ Key Takeaways
 	•	Always ensure date/time fields match the backend model’s required format.
 	•	Use ISO 8601 datetime strings for DateTimeField in Django REST Framework.
 	•	Check backend serializer error messages carefully — they often pinpoint the exact field causing the validation issue.
+
+
+
+
+
+
+### Bug: Note Task Title Not Displaying in API Response
+
+**Description:**  
+When fetching notes, the associated task’s details (such as the task title) were not included in the API response. Instead, only the task ID was returned. This caused frontend components to show placeholders like “No associated task” or “Unknown Task” because they lacked the full task information.
+
+**Root Cause:**  
+The `NoteSerializer` used a `PrimaryKeyRelatedField` for the `task` field with an empty queryset by default. This field only returned the task’s ID, and did not serialize the full task object including the title or other useful fields.
+
+**Fix:**  
+We replaced the `PrimaryKeyRelatedField` with a nested `TaskSerializer` in the `NoteSerializer`, setting the `task` field to `TaskSerializer(read_only=True)`. This change ensures that when notes are serialized, the complete task details (including the title) are embedded in the API response. This fix allows the frontend to correctly display the task name connected to each note.
