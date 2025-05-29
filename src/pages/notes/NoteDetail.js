@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { Container, Spinner, Card } from "react-bootstrap";
 import { axiosReq } from "../../api/axiosDefaults";
 
@@ -40,11 +40,26 @@ function NoteDetail() {
     );
   }
 
+  if (!note) {
+    return (
+      <Container className="my-4">
+        <p>Note not found.</p>
+      </Container>
+    );
+  }
+
   return (
     <Container className="my-4">
       <Card>
         <Card.Body>
-          <Card.Title>Note Details</Card.Title>
+          <Card.Title>
+            Note on:{" "}
+            {note.task ? (
+              <Link to={`/tasks/${note.task.id}`}>{note.task.title}</Link>
+            ) : (
+              "Unknown Task"
+            )}
+          </Card.Title>
           <Card.Text>{note.body}</Card.Text>
           <hr />
           <p>
@@ -55,6 +70,14 @@ function NoteDetail() {
             <strong>Last Updated:</strong>{" "}
             {new Date(note.date_updated).toLocaleString()}
           </p>
+          <div className="d-flex justify-content-between">
+            <Link to={`/notes/${id}/edit`} className="btn btn-primary">
+              Edit Note
+            </Link>
+            <Link to={`/notes/${id}/delete`} className="btn btn-danger">
+              Delete Note
+            </Link>
+          </div>
         </Card.Body>
       </Card>
     </Container>
