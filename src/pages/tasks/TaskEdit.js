@@ -334,6 +334,10 @@ function TaskEdit() {
             Add Note
           </Button>
         </Form.Group>
+
+        <Button type="submit" variant="primary">
+          Save Changes
+        </Button>
       </Form>
     </Container>
   );
