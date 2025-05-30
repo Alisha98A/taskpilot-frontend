@@ -12,7 +12,9 @@ function CompletedTaskCard({ task, deleteTask }) {
             <i className="fas fa-check-double me-2 text-success"></i>
             {task.title}
           </Card.Title>
-          {/* Content will go here */}
+
+          {/* Task description */}
+          <Card.Text>{task.description}</Card.Text>
         </Card.Body>
       </Card>
     </Col>
