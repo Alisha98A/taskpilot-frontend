@@ -9,6 +9,14 @@ const DeleteConfirmModal = ({ show, onHide, onConfirm, error }) => (
     <Modal.Body>
       Are you sure you want to delete this item?
     </Modal.Body>
+    <Modal.Footer>
+      <Button variant="secondary" onClick={onHide}>
+        Cancel
+      </Button>
+      <Button variant="danger" onClick={onConfirm}>
+        Delete
+      </Button>
+    </Modal.Footer>
   </Modal>
 );
 
