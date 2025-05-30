@@ -48,11 +48,32 @@ export const useTasks = () => {
     }
   };
 
+  // Filter tasks by category, search term, and sort by due date or priority
+  const filterAndSortTasks = ({ selectedCategory, searchTerm, sortBy }) => {
+    return tasks
+      .filter((task) =>
+        selectedCategory === "all" ? true : task.category === selectedCategory
+      )
+      .filter((task) =>
+        `${task.title} ${task.description}`
+          .toLowerCase()
+          .includes(searchTerm.toLowerCase())
+      )
+      .sort((a, b) => {
+        if (sortBy === "due_date") {
+          return new Date(a.due_date) - new Date(b.due_date);
+        }
+        const priorityRank = { high: 1, medium: 2, low: 3 };
+        return priorityRank[a.priority] - priorityRank[b.priority];
+      });
+  };
+
   return {
     tasks,
     setTasks,
     categories,
     deleteTask,
     updateTaskState,
+    filterAndSortTasks,
   };
 };
