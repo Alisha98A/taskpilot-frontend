@@ -10,7 +10,14 @@ function PaginationControls({ total, currentPage, setCurrentPage, tasksPerPage }
   return (
     // Wrapper div to center the pagination buttons with some vertical margin
     <div className="d-flex justify-content-center my-3">
-      {/* Pagination buttons will go here */}
+      <ButtonGroup>
+        {/* Generate a button for each page */}
+        {[...Array(totalPages).keys()].map((num) => (
+          <Button key={num}>
+            {num + 1}
+          </Button>
+        ))}
+      </ButtonGroup>
     </div>
   );
 }
