@@ -1,35 +1,11 @@
-import React, { useState } from "react";
-import { Container, Form, Button, Dropdown } from "react-bootstrap";
+import React from "react";
 import { useHistory } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 
-function TaskCreate() {
-  const history = useHistory();
-
-  // ----- Dropdown options for priority, state, and category -----
-  const priorities = [
-    { value: "low", label: "Low" },
-    { value: "medium", label: "Medium" },
-    { value: "high", label: "High" },
-  ];
-
-  const states = [
-    { value: "open", label: "Open" },
-    { value: "in_progress", label: "In Progress" },
-    { value: "done", label: "Done" },
-    { value: "overdue", label: "Overdue" },
-  ];
-
-  const categories = [
-    { value: "work", label: "Work" },
-    { value: "personal", label: "Personal" },
-    { value: "fitness", label: "Fitness" },
-    { value: "finance", label: "Finance" },
-    { value: "misc", label: "Miscellaneous" },
-  ];
-
-  // ----- Form state management -----
-  const [formData, setFormData] = useState({
+// Custom hook for handling task creation logic
+const useTaskCreateForm = (history) => {
+  // Initial form state
+  const [formData, setFormData] = React.useState({
     title: "",
     description: "",
     due_date: "",
@@ -42,131 +18,53 @@ function TaskCreate() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-  };
 
   // ----- Handle dropdown selection changes -----
   const handleSelect = (field) => (eventKey) => {
     setFormData((prev) => ({ ...prev, [field]: eventKey }));
-  };
 
   // ----- Submit form data to API -----
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Convert date only 'yyyy-mm-dd' to ISO datetime string at midnight UTC
-    const dueDateValue = formData.due_date ? formData.due_date + "T00:00:00Z" : "";
-
-    const data = new FormData();
-    data.append("title", formData.title);
-    data.append("description", formData.description);
-    data.append("due_date", dueDateValue);
-    data.append("priority", formData.priority);
-    data.append("state", formData.state);
-    data.append("category", formData.category);
-
     try {
-      await axiosReq.post("/api/tasks/", data);
+      const payload = {
+        ...formData,
+        due_date: formData.due_date ? new Date(formData.due_date).toISOString() : null,
+      };
+      await axiosReq.post("/api/tasks/", payload);
       history.push("/tasks");
     } catch (err) {
       alert("Failed to create task");
     }
   };
 
-  // Get today's date in yyyy-mm-dd format for min attribute on input
-  const todayDate = new Date().toISOString().split("T")[0];
+  const getMinDate = () => new Date().toISOString().split("T")[0];
 
-  // ----- JSX UI rendering -----
+  return {
+    formData,
+    handleChange,
+    handleSelect,
+    handleSubmit,
+    getMinDate,
+  };
+};
+
+function TaskCreate() {
+  const history = useHistory();
+
+  const {
+    formData,
+    handleChange,
+    handleSelect,
+    handleSubmit,
+    getMinDate,
+  } = useTaskCreateForm(history);
+
   return (
-    <Container className="my-4">
-      <h2>Create Task</h2>
-      <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3" controlId="title">
-          <Form.Label>Title</Form.Label>
-          <Form.Control
-            type="text"
-            name="title"
-            value={formData.title}
-            onChange={handleChange}
-            required
-          />
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="description">
-          <Form.Label>Description</Form.Label>
-          <Form.Control
-            as="textarea"
-            name="description"
-            value={formData.description}
-            onChange={handleChange}
-            rows={3}
-          />
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="due_date">
-          <Form.Label>Due Date</Form.Label>
-          <Form.Control
-            type="date"
-            name="due_date"
-            value={formData.due_date}
-            onChange={handleChange}
-            min={todayDate}
-            required
-          />
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="priority">
-          <Form.Label>Priority</Form.Label>
-          <Dropdown onSelect={handleSelect("priority")}>
-            <Dropdown.Toggle variant="secondary" id="dropdown-priority">
-              {priorities.find((p) => p.value === formData.priority)?.label}
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-              {priorities.map((p) => (
-                <Dropdown.Item key={p.value} eventKey={p.value}>
-                  {p.label}
-                </Dropdown.Item>
-              ))}
-            </Dropdown.Menu>
-          </Dropdown>
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="state">
-          <Form.Label>State</Form.Label>
-          <Dropdown onSelect={handleSelect("state")}>
-            <Dropdown.Toggle variant="secondary" id="dropdown-state">
-              {states.find((s) => s.value === formData.state)?.label}
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-              {states.map((s) => (
-                <Dropdown.Item key={s.value} eventKey={s.value}>
-                  {s.label}
-                </Dropdown.Item>
-              ))}
-            </Dropdown.Menu>
-          </Dropdown>
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="category">
-          <Form.Label>Category</Form.Label>
-          <Dropdown onSelect={handleSelect("category")}>
-            <Dropdown.Toggle variant="secondary" id="dropdown-category">
-              {categories.find((c) => c.value === formData.category)?.label}
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-              {categories.map((c) => (
-                <Dropdown.Item key={c.value} eventKey={c.value}>
-                  {c.label}
-                </Dropdown.Item>
-              ))}
-            </Dropdown.Menu>
-          </Dropdown>
-        </Form.Group>
-
-        <Button type="submit" variant="primary">
-          Create Task
-        </Button>
-      </Form>
-    </Container>
+    <div>
+      {/* placeholder - form not yet extracted */}
+      <pre>{JSON.stringify(formData, null, 2)}</pre>
+    </div>
   );
 }
 
