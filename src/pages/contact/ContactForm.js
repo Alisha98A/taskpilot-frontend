@@ -9,6 +9,10 @@ function ContactForm() {
     message: "",
   });
 
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
+
   return (
     <Container className={styles.contactContainer}>
       <Row className="justify-content-center">
