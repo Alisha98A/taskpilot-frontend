@@ -1,0 +1,32 @@
+/* Wrapper for progress bar spacing */
+.progressWrapper {
+  margin-bottom: 1.5rem;
+}
+
+/* Section title with some spacing */
+.sectionTitle {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  transition: color 0.3s ease;
+}
+
+/* Completed section subtle background */
+.completedSection {
+  background-color: #eef7ee;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-top: 2rem;
+}
+
+/* Spacing between Edit and Delete buttons inside task card footer */
+.taskCardFooter > a,
+.taskCardFooter > button {
+  margin-right: 0.5rem;
+}
+
+/* Remove margin-right on last button/link to prevent extra spacing */
+.taskCardFooter > a:last-child,
+.taskCardFooter > button:last-child {
+  margin-right: 0;
+}
