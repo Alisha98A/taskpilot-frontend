@@ -50,6 +50,23 @@ function TaskCard({ task, updateState, deleteTask }) {
             <i className="fas fa-calendar-alt me-2 text-secondary"></i>
             <strong>Due:</strong> {task.due_date}
           </Card.Text>
+
+          {/* Priority badge */}
+          <Card.Text>
+            <i className="fas fa-bolt me-2 text-secondary"></i>
+            <strong>Priority:</strong>{" "}
+            <Badge
+              bg={
+                task.priority === "high"
+                  ? "danger"
+                  : task.priority === "medium"
+                  ? "warning"
+                  : "success"
+              }
+            >
+              {task.priority}
+            </Badge>
+          </Card.Text>
         </Card.Body>
       </Card>
     </Col>
