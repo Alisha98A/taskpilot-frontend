@@ -1,0 +1,41 @@
+/* Main wrapper with vertical spacing */
+.contactContainer {
+  margin-top: 3rem;
+}
+
+/* Page heading */
+.contactTitle {
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+/* Form control spacing */
+.formGroup {
+  margin-bottom: 1.5rem;
+}
+
+/* Submit button full width with some padding */
+.submitButton {
+  width: 100%;
+  padding: 0.75rem;
+  font-weight: 500;
+}
+
+/* Alert message styles */
+.successMessage {
+  color: #155724;
+  background-color: #d4edda;
+  padding: 0.75rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+.errorMessage {
+  color: #721c24;
+  background-color: #f8d7da;
+  padding: 0.75rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
