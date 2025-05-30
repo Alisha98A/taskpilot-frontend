@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Card } from "react-bootstrap";
 
 function NoteCard({ note }) {
@@ -7,10 +8,15 @@ function NoteCard({ note }) {
       <Card.Body className="d-flex flex-column justify-content-between">
         <div>
           <Card.Title>
-            {note.body.length > 80 ? note.body.substring(0, 80) + "..." : note.body}
+            <Link to={`/notes/${note.id}`}>
+              {note.body.length > 80 ? note.body.substring(0, 80) + "..." : note.body}
+            </Link>
           </Card.Title>
           <Card.Text className="text-muted">
-            Task: {note.task.title}
+            Task:{" "}
+            <Link to={`/tasks/${note.task.id}`}>
+              {note.task.title}
+            </Link>
           </Card.Text>
         </div>
         <small className="text-muted">
