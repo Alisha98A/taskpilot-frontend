@@ -1,10 +1,12 @@
 import React, { useEffect, useCallback, useState } from "react";
-import { Container, Button} from "react-bootstrap";
+import { Container, Button } from "react-bootstrap";
 import { useParams, useHistory } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import TaskForm from "./TaskForm";
 import useTaskForm from "../../hooks/useTaskForm";
 import NoteCardForTask from "../../components/NoteCardForTask";
+
+import styles from "../../styles/TaskDetail.module.css";
 
 function TaskDetail() {
   const { id } = useParams();
@@ -51,20 +53,19 @@ function TaskDetail() {
 
   return (
     <Container className="my-4">
-      <h2 className="mb-4">Task Detail</h2>
+      <h2 className={styles.taskTitle}>Task Detail</h2>
 
       {error && <p className="text-danger">{error}</p>}
 
-      <TaskForm formData={formData} readOnly getMinDate={getMinDate} />
+      <div className={styles.taskFormWrapper}>
+        <TaskForm formData={formData} readOnly getMinDate={getMinDate} />
+      </div>
 
-      <div className="d-flex justify-content-end gap-2 mt-3">
+      <div className={`d-flex justify-content-end gap-2 mt-3 ${styles.buttonGroup}`}>
         <Button variant="secondary" onClick={() => history.push("/tasks")}>
           Back to Tasks
         </Button>
-        <Button
-          variant="primary"
-          onClick={() => history.push(`/tasks/${id}/edit`)}
-        >
+        <Button variant="primary" onClick={() => history.push(`/tasks/${id}/edit`)}>
           Edit Task
         </Button>
         <Button variant="danger" onClick={handleDelete}>
@@ -73,15 +74,17 @@ function TaskDetail() {
       </div>
 
       <h4 className="mt-5">Notes</h4>
-      {notes.length === 0 ? (
-        <p className="text-muted">No notes for this task.</p>
-      ) : (
-        <div className="d-flex flex-column gap-3">
-          {notes.map((note) => (
-            <NoteCardForTask key={note.id} note={note} />
-          ))}
-        </div>
-      )}
+      <div className={styles.notesSection}>
+        {notes.length === 0 ? (
+          <p className="text-muted">No notes for this task.</p>
+        ) : (
+          <div className="d-flex flex-column gap-3">
+            {notes.map((note) => (
+              <NoteCardForTask key={note.id} note={note} />
+            ))}
+          </div>
+        )}
+      </div>
     </Container>
   );
 }
