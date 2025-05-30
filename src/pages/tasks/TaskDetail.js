@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Container } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
@@ -30,6 +30,10 @@ function TaskDetail() {
       console.error(err);
     }
   }, [id]);
+
+  useEffect(() => {
+    fetchTask();
+  }, [fetchTask]);
 
   return (
     <Container className="my-4">
