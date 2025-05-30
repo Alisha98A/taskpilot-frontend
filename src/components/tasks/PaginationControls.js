@@ -8,7 +8,8 @@ function PaginationControls({ total, currentPage, setCurrentPage, tasksPerPage }
   if (totalPages <= 1) return null;
 
   return (
-    <div>
+    // Wrapper div to center the pagination buttons with some vertical margin
+    <div className="d-flex justify-content-center my-3">
       {/* Pagination buttons will go here */}
     </div>
   );
