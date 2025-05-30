@@ -88,6 +88,13 @@ function TaskList() {
           </Dropdown>
         </Col>
       </Row>
+
+      {/* Category Filter */}
+      <TaskCategoryFilter
+        categories={categories}
+        selectedCategory={selectedCategory}
+        setSelectedCategory={setSelectedCategory}
+      />
     </Container>
   );
 }
