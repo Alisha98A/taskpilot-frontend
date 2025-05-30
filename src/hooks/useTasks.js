@@ -19,9 +19,22 @@ export const useTasks = () => {
     fetchTasks();
   }, []);
 
+  // Function to delete a task by id, with confirmation dialog
+  const deleteTask = async (id) => {
+    if (window.confirm("Are you sure you want to delete this task?")) {
+      try {
+        await axiosReq.delete(`/api/tasks/${id}/`);
+        setTasks((prev) => prev.filter((t) => t.id !== id));
+      } catch (err) {
+        console.error("Error deleting task:", err);
+      }
+    }
+  };
+
   return {
     tasks,
     setTasks,
     categories,
+    deleteTask,
   };
 };
