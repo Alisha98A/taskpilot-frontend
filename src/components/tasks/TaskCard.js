@@ -67,6 +67,20 @@ function TaskCard({ task, updateState, deleteTask }) {
               {task.priority}
             </Badge>
           </Card.Text>
+
+          {/* Footer with buttons */}
+          <div className={styles.taskCardFooter}>
+            <Link to={`/tasks/${task.id}/edit`} className="btn btn-sm btn-outline-primary">
+              <i className="fas fa-edit me-1"></i>Edit
+            </Link>
+            <Button
+              variant="outline-danger"
+              size="sm"
+              onClick={() => deleteTask(task.id)}
+            >
+              <i className="fas fa-trash-alt me-1"></i>Delete
+            </Button>
+          </div>
         </Card.Body>
       </Card>
     </Col>
