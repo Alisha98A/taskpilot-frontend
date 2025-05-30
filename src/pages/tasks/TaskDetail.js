@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 
 function TaskDetail() {
-  const { id } = useParams(); // Extract task ID from URL parameters
+  const { id } = useParams();
+
+  const [formData, setFormData] = useState({
+    title: "",
+    description: "",
+    due_date: "",
+    priority: "",
+    state: "",
+    category: "",
+  });
 
   return (
     <Container className="my-4">
