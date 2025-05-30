@@ -4,6 +4,11 @@ import { axiosReq } from "../../api/axiosDefaults";
 import styles from "../../styles/ContactForm.module.css";
 
 function ContactForm() {
+  const [formData, setFormData] = useState({
+    subject: "",
+    message: "",
+  });
+
   return (
     <Container className={styles.contactContainer}>
       <Row className="justify-content-center">
