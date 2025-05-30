@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import TaskForm from "./TaskForm";
 
 import { axiosReq } from "../../api/axiosDefaults";
+import styles from "../../styles/TaskCreate.module.css";
 
 // Custom hook for handling task creation logic
 const useTaskCreateForm = (history) => {
@@ -71,14 +72,16 @@ function TaskCreate() {
   } = useTaskCreateForm(history);
 
   return (
-    <TaskForm
-      formData={formData}
-      handleChange={handleChange}
-      handleSelect={handleSelect}
-      handleSubmit={handleSubmit}
-      getMinDate={getMinDate}
-      isEditMode={false}
-    />
+    <div className={styles.taskCreateWrapper}>
+      <TaskForm
+        formData={formData}
+        handleChange={handleChange}
+        handleSelect={handleSelect}
+        handleSubmit={handleSubmit}
+        getMinDate={getMinDate}
+        isEditMode={false}
+      />
+    </div>
   );
 }
 

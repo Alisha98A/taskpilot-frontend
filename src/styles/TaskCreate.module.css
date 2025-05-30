@@ -1,0 +1,6 @@
+/* Add top margin only for small screens */
+@media (max-width: 575.98px) {
+  .taskCreateWrapper {
+    margin-top: 4rem; /* Push content down on smaller screen */
+  }
+}
