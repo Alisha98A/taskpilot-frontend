@@ -3,7 +3,11 @@ import { Button, ButtonGroup } from "react-bootstrap";
 function TaskCategoryFilter({ categories, selectedCategory, setSelectedCategory }) {
   return (
     <ButtonGroup>
-      {/* Buttons will go here */}
+      {categories.map((cat) => (
+        <Button key={cat}>
+          {/* Button content will go here */}
+        </Button>
+      ))}
     </ButtonGroup>
   );
 }
