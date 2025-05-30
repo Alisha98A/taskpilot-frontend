@@ -46,11 +46,28 @@ function TaskList() {
     return items.slice(start, start + tasksPerPage);
   };
 
+  const progress =
+    tasks.length > 0
+      ? Math.round(
+          (tasks.filter((t) => t.state === "done").length / tasks.length) * 100
+        )
+      : 0;
+
   return (
     <Container>
       <h2 className="my-4 text-center">
         <i className="fas fa-clipboard-list me-2"></i>Your Tasks
       </h2>
+
+      <div className={styles.progressWrapper}>
+        <ProgressBar now={progress} label={`${progress}% Complete`} />
+      </div>
+
+      <div className="text-end mb-3">
+        <Link to="/tasks/create" className="btn btn-success">
+          <i className="fas fa-plus-circle me-1"></i> New Task
+        </Link>
+      </div>
     </Container>
   );
 }
