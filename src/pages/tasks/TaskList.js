@@ -17,6 +17,21 @@ import { useTasks } from "../../hooks/useTasks";
 import styles from "../../styles/TaskList.module.css";
 
 function TaskList() {
+  const {
+    tasks,
+    categories,
+    deleteTask,
+    updateTaskState,
+    filterAndSortTasks,
+    groupTasks,
+  } = useTasks();
+
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [sortBy, setSortBy] = useState("due_date");
+  const [currentPage, setCurrentPage] = useState(1);
+  const tasksPerPage = 6;
+
   return (
     <Container>
       <h2 className="my-4 text-center">
