@@ -68,6 +68,30 @@ export const useTasks = () => {
       });
   };
 
+  // Group tasks into today, this week, and later buckets based on due date
+  const groupTasks = (taskList) => {
+    const today = new Date();
+    const endOfWeek = new Date();
+    endOfWeek.setDate(today.getDate() + 7);
+
+    const todayTasks = [];
+    const weekTasks = [];
+    const laterTasks = [];
+
+    taskList.forEach((task) => {
+      const due = new Date(task.due_date);
+      if (due.toDateString() === today.toDateString()) {
+        todayTasks.push(task);
+      } else if (due <= endOfWeek) {
+        weekTasks.push(task);
+      } else {
+        laterTasks.push(task);
+      }
+    });
+
+    return { todayTasks, weekTasks, laterTasks };
+  };
+
   return {
     tasks,
     setTasks,
@@ -75,5 +99,6 @@ export const useTasks = () => {
     deleteTask,
     updateTaskState,
     filterAndSortTasks,
+    groupTasks,
   };
 };
