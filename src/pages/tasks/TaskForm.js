@@ -26,30 +26,40 @@ const OPTIONS = {
 /**
  * DropdownSelector Component
  * Renders a label and a Bootstrap Dropdown for selecting one option.
- * 
+ *
  * Props:
  * - label: The label text for the dropdown
  * - options: Array of {value, label} objects representing dropdown items
  * - selected: The currently selected value
  * - onSelect: Callback to handle selection changes
  * - controlId: HTML id for the Form.Group container (for accessibility)
+ * - disabled: boolean to disable dropdown
  */
-const DropdownSelector = ({ label, options, selected, onSelect, controlId }) => (
+const DropdownSelector = ({
+  label,
+  options,
+  selected,
+  onSelect,
+  controlId,
+  disabled = false,
+}) => (
   <Form.Group className="mb-3" controlId={controlId}>
     <Form.Label>{label}</Form.Label>
-    <Dropdown onSelect={onSelect}>
-      <Dropdown.Toggle variant="secondary">
+    <Dropdown onSelect={disabled ? undefined : onSelect}>
+      <Dropdown.Toggle variant="secondary" disabled={disabled}>
         {/* Show label for selected option or "Select" if none */}
         {options.find((o) => o.value === selected)?.label || "Select"}
       </Dropdown.Toggle>
-      <Dropdown.Menu>
-        {/* Map options to Dropdown.Item components */}
-        {options.map(({ value, label }) => (
-          <Dropdown.Item key={value} eventKey={value}>
-            {label}
-          </Dropdown.Item>
-        ))}
-      </Dropdown.Menu>
+      {!disabled && (
+        <Dropdown.Menu>
+          {/* Map options to Dropdown.Item components */}
+          {options.map(({ value, label }) => (
+            <Dropdown.Item key={value} eventKey={value}>
+              {label}
+            </Dropdown.Item>
+          ))}
+        </Dropdown.Menu>
+      )}
     </Dropdown>
   </Form.Group>
 );
@@ -57,7 +67,7 @@ const DropdownSelector = ({ label, options, selected, onSelect, controlId }) => 
 /**
  * TaskForm Component
  * Renders the full form to create or edit a task.
- * 
+ *
  * Props:
  * - formData: Object holding form field values
  * - handleChange: Function to handle input changes (text/date)
@@ -65,11 +75,19 @@ const DropdownSelector = ({ label, options, selected, onSelect, controlId }) => 
  * - handleSubmit: Function to handle form submission
  * - getMinDate: Function that returns minimum allowed due date (string in YYYY-MM-DD)
  * - isEditMode: Boolean flag, true if editing existing task
+ * - readOnly: Boolean flag, true if form fields should be read-only
  */
-function TaskForm({ formData, handleChange, handleSelect, handleSubmit, getMinDate, isEditMode }) {
+function TaskForm({
+  formData,
+  handleChange,
+  handleSelect,
+  handleSubmit,
+  getMinDate,
+  isEditMode,
+  readOnly = false,
+}) {
   return (
     <Form onSubmit={handleSubmit}>
-
       {/* Title input */}
       <Form.Group className="mb-3" controlId="title">
         <Form.Label>Title</Form.Label>
@@ -77,7 +95,8 @@ function TaskForm({ formData, handleChange, handleSelect, handleSubmit, getMinDa
           type="text"
           name="title"
           value={formData.title}
-          onChange={handleChange}
+          onChange={readOnly ? undefined : handleChange}
+          readOnly={readOnly}
           required
         />
       </Form.Group>
@@ -90,7 +109,8 @@ function TaskForm({ formData, handleChange, handleSelect, handleSubmit, getMinDa
           rows={3}
           name="description"
           value={formData.description}
-          onChange={handleChange}
+          onChange={readOnly ? undefined : handleChange}
+          readOnly={readOnly}
         />
       </Form.Group>
 
@@ -101,8 +121,9 @@ function TaskForm({ formData, handleChange, handleSelect, handleSubmit, getMinDa
           type="date"
           name="due_date"
           value={formData.due_date || ""}
-          onChange={handleChange}
-          min={getMinDate()}
+          onChange={readOnly ? undefined : handleChange}
+          readOnly={readOnly}
+          min={getMinDate ? getMinDate() : new Date().toISOString().split("T")[0]}
           required
         />
       </Form.Group>
@@ -112,8 +133,9 @@ function TaskForm({ formData, handleChange, handleSelect, handleSubmit, getMinDa
         label="Priority"
         options={OPTIONS.PRIORITIES}
         selected={formData.priority}
-        onSelect={handleSelect("priority")}
+        onSelect={readOnly ? undefined : (value) => handleSelect("priority")(value)}
         controlId="priority"
+        disabled={readOnly}
       />
 
       {/* Dropdown for State */}
@@ -121,8 +143,9 @@ function TaskForm({ formData, handleChange, handleSelect, handleSubmit, getMinDa
         label="State"
         options={OPTIONS.STATES}
         selected={formData.state}
-        onSelect={handleSelect("state")}
+        onSelect={readOnly ? undefined : (value) => handleSelect("state")(value)}
         controlId="state"
+        disabled={readOnly}
       />
 
       {/* Dropdown for Category */}
@@ -130,14 +153,16 @@ function TaskForm({ formData, handleChange, handleSelect, handleSubmit, getMinDa
         label="Category"
         options={OPTIONS.CATEGORIES}
         selected={formData.category}
-        onSelect={handleSelect("category")}
+        onSelect={readOnly ? undefined : (value) => handleSelect("category")(value)}
         controlId="category"
+        disabled={readOnly}
       />
 
-      {/* Submit button */}
-      <Button variant="primary" type="submit">
-        {isEditMode ? "Update Task" : "Create Task"}
-      </Button>
+      {!readOnly && (
+        <Button variant="primary" type="submit">
+          {isEditMode ? "Update Task" : "Create Task"}
+        </Button>
+      )}
     </Form>
   );
 }
