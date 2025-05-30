@@ -42,7 +42,49 @@ function ContactForm() {
     <Container className={styles.contactContainer}>
       <Row className="justify-content-center">
         <Col md={8} lg={6}>
-          {/* Content will go here */}
+          <h2 className={styles.contactTitle}>Get in Touch</h2>
+
+          {error && <div className={styles.errorMessage}>{error}</div>}
+          {success && <div className={styles.successMessage}>{success}</div>}
+
+          <Form onSubmit={handleSubmit}>
+            <Form.Group controlId="contactSubject" className={styles.formGroup}>
+              <Form.Label>Subject</Form.Label>
+              <Form.Control
+                type="text"
+                name="subject"
+                value={formData.subject}
+                onChange={handleChange}
+                placeholder="Enter subject"
+                required
+              />
+            </Form.Group>
+
+            <Form.Group
+              controlId="contactMessage"
+              className={`${styles.formGroup} mt-3`}
+            >
+              <Form.Label>Message</Form.Label>
+              <Form.Control
+                as="textarea"
+                name="message"
+                rows={5}
+                value={formData.message}
+                onChange={handleChange}
+                placeholder="Write your message here..."
+                required
+              />
+            </Form.Group>
+
+            <Button
+              variant="primary"
+              type="submit"
+              className={styles.submitButton}
+              disabled={loading}
+            >
+              {loading ? "Sending..." : "Send Message"}
+            </Button>
+          </Form>
         </Col>
       </Row>
     </Container>
