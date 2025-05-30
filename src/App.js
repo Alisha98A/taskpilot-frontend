@@ -21,6 +21,16 @@ import TaskDetail from "./pages/tasks/TaskDetail";
 import TaskCreate from "./pages/tasks/TaskCreate.js";
 import TaskEdit from "./pages/tasks/TaskEdit";
 
+// Note Pages
+import NoteList from "./pages/notes/NoteList";
+import NoteDetail from "./pages/notes/NoteDetail";
+import NoteCreate from "./pages/notes/NoteCreate.js";
+import NoteEdit from "./pages/notes/NoteEdit";
+import NoteDelete from "./pages/notes/NoteDelete";
+
+// Contact Page
+import ContactForm from "./pages/contact/ContactForm";
+
 function App() {
   const currentUser = useCurrentUser();
   const location = useLocation();
@@ -48,6 +58,16 @@ function App() {
             <PrivateRoute exact path="/tasks/create" component={TaskCreate} />
             <PrivateRoute exact path="/tasks/:id" component={TaskDetail} />
             <PrivateRoute exact path="/tasks/:id/edit" component={TaskEdit} />
+
+            {/* Notes */}
+            <PrivateRoute exact path="/notes" component={NoteList} />
+            <PrivateRoute exact path="/notes/create" component={NoteCreate} />
+            <PrivateRoute exact path="/notes/:id" component={NoteDetail} />
+            <PrivateRoute exact path="/notes/:id/edit" component={NoteEdit} />
+            <PrivateRoute exact path="/notes/:id/delete" component={NoteDelete} />
+
+            {/* Contact (submit only) */}
+            <PrivateRoute exact path="/contact" component={ContactForm} />
 
             {/* Auth */}
             <Route exact path="/signin" component={SignInForm} />
