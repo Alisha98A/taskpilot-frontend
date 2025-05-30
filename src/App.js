@@ -15,6 +15,12 @@ import Dashboard from "./pages/home/Dashboard";
 import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from "./pages/auth/SignInForm";
 
+// Task Pages
+import TaskList from "./pages/tasks/TaskList";
+import TaskDetail from "./pages/tasks/TaskDetail";
+import TaskCreate from "./pages/tasks/TaskCreate.js";
+import TaskEdit from "./pages/tasks/TaskEdit";
+
 function App() {
   const currentUser = useCurrentUser();
   const location = useLocation();
@@ -36,6 +42,12 @@ function App() {
           <Switch>
             {/* Home / Dashboard */}
             <Route exact path="/" render={() => <Dashboard />} />
+
+            {/* Tasks */}
+            <PrivateRoute exact path="/tasks" component={TaskList} />
+            <PrivateRoute exact path="/tasks/create" component={TaskCreate} />
+            <PrivateRoute exact path="/tasks/:id" component={TaskDetail} />
+            <PrivateRoute exact path="/tasks/:id/edit" component={TaskEdit} />
 
             {/* Auth */}
             <Route exact path="/signin" component={SignInForm} />
