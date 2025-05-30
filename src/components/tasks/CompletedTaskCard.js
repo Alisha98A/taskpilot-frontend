@@ -21,6 +21,12 @@ function CompletedTaskCard({ task, deleteTask }) {
             <i className="fas fa-folder-open me-2 text-secondary"></i>
             <strong>Category:</strong> {task.category}
           </Card.Text>
+
+          {/* Completion date with icon */}
+          <Card.Text>
+            <i className="fas fa-calendar-check me-2 text-secondary"></i>
+            <strong>Completed:</strong> {task.due_date}
+          </Card.Text>
         </Card.Body>
       </Card>
     </Col>
