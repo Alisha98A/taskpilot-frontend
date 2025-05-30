@@ -44,6 +44,17 @@ function CompletedTaskCard({ task, deleteTask }) {
               {task.priority}
             </Badge>
           </Card.Text>
+
+          {/* Delete button */}
+          <div className={styles.completedCardFooter}>
+            <Button
+              size="sm"
+              variant="outline-danger"
+              onClick={() => deleteTask(task.id)}
+            >
+              <i className="fas fa-trash-alt me-1"></i>Delete
+            </Button>
+          </div>
         </Card.Body>
       </Card>
     </Col>
