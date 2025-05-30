@@ -6,6 +6,9 @@ function NoteCardForTask({ note }) {
     <Card className="mb-3">
       <Card.Body>
         <Card.Text>{note.body}</Card.Text>
+        <small className="text-muted">
+          {new Date(note.date_added || note.created_at).toLocaleString()}
+        </small>
       </Card.Body>
     </Card>
   );
