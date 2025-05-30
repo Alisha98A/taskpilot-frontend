@@ -27,6 +27,23 @@ function CompletedTaskCard({ task, deleteTask }) {
             <i className="fas fa-calendar-check me-2 text-secondary"></i>
             <strong>Completed:</strong> {task.due_date}
           </Card.Text>
+
+          {/* Priority badge with icon */}
+          <Card.Text>
+            <i className="fas fa-star me-2 text-warning"></i>
+            <strong>Priority:</strong>{" "}
+            <Badge
+              bg={
+                task.priority === "high"
+                  ? "danger"
+                  : task.priority === "medium"
+                  ? "warning"
+                  : "success"
+              }
+            >
+              {task.priority}
+            </Badge>
+          </Card.Text>
         </Card.Body>
       </Card>
     </Col>
