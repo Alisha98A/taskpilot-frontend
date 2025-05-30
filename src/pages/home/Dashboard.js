@@ -1,18 +1,39 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   FaClipboardList,
   FaRegStickyNote,
-  FaCheckCircle,
   FaEnvelope,
 } from 'react-icons/fa';
 import styles from '../../styles/Dashboard.module.css';
+import { axiosReq } from '../../api/axiosDefaults';
 
 /**
  * Dashboard component - displays quick stats and navigation links
  * for user productivity tools like tasks, notes, completed items, and contact.
  */
 function Dashboard() {
+  const [tasksCount, setTasksCount] = useState(0);
+  const [notesCount, setNotesCount] = useState(0);
+
+  useEffect(() => {
+    const fetchCounts = async () => {
+      try {
+        // Fetch all tasks and count length
+        const tasksRes = await axiosReq.get('/api/tasks/');
+        setTasksCount(Array.isArray(tasksRes.data) ? tasksRes.data.length : (tasksRes.data.results?.length ?? 0));
+
+        // Fetch all notes and count length
+        const notesRes = await axiosReq.get('/api/notes/');
+        setNotesCount(Array.isArray(notesRes.data) ? notesRes.data.length : (notesRes.data.results?.length ?? 0));
+      } catch (error) {
+        console.error('Failed to fetch dashboard data:', error);
+      }
+    };
+
+    fetchCounts();
+  }, []);
+
   return (
     <main className={styles.dashboardWrapper}>
       {/* Header Section */}
@@ -31,8 +52,8 @@ function Dashboard() {
             <FaClipboardList size={32} />
           </div>
           <div>
-            <h2>Pending Tasks</h2>
-            <p>8 Tasks</p>
+            <h2>Tasks</h2>
+            <p>{tasksCount} Task{tasksCount !== 1 ? 's' : ''}</p>
           </div>
         </Link>
 
@@ -42,19 +63,8 @@ function Dashboard() {
             <FaRegStickyNote size={32} />
           </div>
           <div>
-            <h2>Saved Notes</h2>
-            <p>12 Notes</p>
-          </div>
-        </Link>
-
-        {/* Completed Tasks Card */}
-        <Link to="/completed" className={styles.statCard}>
-          <div className={styles.icon}>
-            <FaCheckCircle size={32} />
-          </div>
-          <div>
-            <h2>Completed</h2>
-            <p>5 Today</p>
+            <h2>Notes</h2>
+            <p>{notesCount} Note{notesCount !== 1 ? 's' : ''}</p>
           </div>
         </Link>
 
@@ -74,10 +84,10 @@ function Dashboard() {
       <section className={styles.actionsPanel}>
         <h3>Quick Actions</h3>
         <div className={styles.buttonGroup}>
-          <Link to="/tasks" className={styles.primaryBtn}>
+          <Link to="/tasks/create" className={styles.primaryBtn}>
             + Create Task
           </Link>
-          <Link to="/notes" className={styles.secondaryBtn}>
+          <Link to="/notes/create" className={styles.secondaryBtn}>
             + Add Note
           </Link>
         </div>
