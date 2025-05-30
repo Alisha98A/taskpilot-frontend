@@ -5,7 +5,9 @@ function NoteCard({ note }) {
   return (
     <Card className="mb-3">
       <Card.Body>
-        <Card.Title>{note.body}</Card.Title>
+        <Card.Title>
+          {note.body.length > 80 ? note.body.substring(0, 80) + "..." : note.body}
+        </Card.Title>
       </Card.Body>
     </Card>
   );
