@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Container, Spinner, Card } from "react-bootstrap";
 import { axiosReq } from "../../api/axiosDefaults";
+import styles from "../../styles/NoteDetail.module.css";
 
 function NoteDetail() {
   const { id } = useParams();
@@ -49,7 +50,7 @@ function NoteDetail() {
   }
 
   return (
-    <Container className="my-4">
+    <Container className={styles.noteDetailWrapper}>
       <Card>
         <Card.Body>
           <Card.Title>

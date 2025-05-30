@@ -1,0 +1,23 @@
+/* Push content down on small screens so it's fully visible */
+@media (max-width: 575.98px) {
+  .noteDetailWrapper {
+    margin-top: 4rem;
+  }
+
+  /* Make buttons smaller and less wide on small screens */
+  .noteDetailWrapper .btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.85rem;
+    min-width: auto;
+  }
+
+  /* Add space between buttons on small screens */
+  .noteDetailWrapper .btn + .btn {
+    margin-left: 0.5rem;
+  }
+}
+
+/* Add spacing between buttons on all screen sizes */
+.noteDetailWrapper .btn + .btn {
+  margin-left: 1rem;
+}
