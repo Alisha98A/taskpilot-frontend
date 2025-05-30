@@ -13,7 +13,13 @@ function PaginationControls({ total, currentPage, setCurrentPage, tasksPerPage }
       <ButtonGroup>
         {/* Generate a button for each page */}
         {[...Array(totalPages).keys()].map((num) => (
-          <Button key={num}>
+          <Button
+            key={num}
+            // Highlight current page button
+            variant={currentPage === num + 1 ? "primary" : "outline-primary"}
+            // Set the current page on click
+            onClick={() => setCurrentPage(num + 1)}
+          >
             {num + 1}
           </Button>
         ))}
