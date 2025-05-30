@@ -30,6 +30,12 @@ function TaskCard({ task, updateState, deleteTask }) {
               ))}
             </Form.Control>
           </div>
+
+          {/* Task title with icon */}
+          <Link to={`/tasks/${task.id}`} className={styles.taskTitle}>
+            <i className="fas fa-tasks me-2 text-primary"></i>
+            {task.title}
+          </Link>
         </Card.Body>
       </Card>
     </Col>
