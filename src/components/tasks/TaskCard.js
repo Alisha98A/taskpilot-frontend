@@ -31,11 +31,25 @@ function TaskCard({ task, updateState, deleteTask }) {
             </Form.Control>
           </div>
 
-          {/* Task title with icon */}
           <Link to={`/tasks/${task.id}`} className={styles.taskTitle}>
             <i className="fas fa-tasks me-2 text-primary"></i>
             {task.title}
           </Link>
+
+          {/* Task description */}
+          <Card.Text>{task.description}</Card.Text>
+
+          {/* Category */}
+          <Card.Text>
+            <i className="fas fa-folder-open me-2 text-secondary"></i>
+            <strong>Category:</strong> {task.category}
+          </Card.Text>
+
+          {/* Due date */}
+          <Card.Text>
+            <i className="fas fa-calendar-alt me-2 text-secondary"></i>
+            <strong>Due:</strong> {task.due_date}
+          </Card.Text>
         </Card.Body>
       </Card>
     </Col>
