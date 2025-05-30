@@ -95,6 +95,58 @@ function TaskList() {
         selectedCategory={selectedCategory}
         setSelectedCategory={setSelectedCategory}
       />
+
+      {/* Task Sections */}
+      {[
+        { title: "Today", icon: "calendar-day", color: "info", tasks: todayTasks },
+        { title: "This Week", icon: "calendar-week", color: "warning", tasks: weekTasks },
+        { title: "Later", icon: "calendar-plus", color: "secondary", tasks: laterTasks },
+      ].map(({ title, icon, color, tasks }) => (
+        <section key={title}>
+          <h4 className={`mt-4 ${styles.sectionTitle}`}>
+            <i className={`fas fa-${icon} me-2 text-${color}`}></i>
+            {title}
+          </h4>
+          <Row>
+            {paginate(tasks).length
+              ? paginate(tasks).map((task) => (
+                  <TaskCard
+                    key={task.id}
+                    task={task}
+                    updateState={updateTaskState}
+                    deleteTask={deleteTask}
+                  />
+                ))
+              : <p>No tasks due {title.toLowerCase()}.</p>}
+          </Row>
+          <PaginationControls
+            total={tasks.length}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            tasksPerPage={tasksPerPage}
+          />
+        </section>
+      ))}
+
+      {/* Completed Section */}
+      <section className={styles.completedSection}>
+        <h4 className={`mt-4 ${styles.sectionTitle}`}>
+          <i className="fas fa-check-circle me-2 text-success"></i>Completed
+        </h4>
+        <Row>
+          {paginate(completedTasks).length
+            ? paginate(completedTasks).map((task) => (
+                <CompletedTaskCard key={task.id} task={task} deleteTask={deleteTask} />
+              ))
+            : <p>No completed tasks.</p>}
+        </Row>
+        <PaginationControls
+          total={completedTasks.length}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          tasksPerPage={tasksPerPage}
+        />
+      </section>
     </Container>
   );
 }
