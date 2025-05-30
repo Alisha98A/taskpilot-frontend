@@ -2,10 +2,22 @@ import { useEffect, useState } from "react";
 import { axiosReq } from "../api/axiosDefaults";
 
 export const useTasks = () => {
-  // State to store all tasks fetched from the API
   const [tasks, setTasks] = useState([]);
-  // State to store unique task categories including 'all'
   const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    const fetchTasks = async () => {
+      try {
+        const res = await axiosReq.get("/api/tasks/");
+        const taskData = res.data.results;
+        setTasks(taskData);
+        setCategories(["all", ...new Set(taskData.map((t) => t.category))]);
+      } catch (err) {
+        console.error("Error fetching tasks:", err);
+      }
+    };
+    fetchTasks();
+  }, []);
 
   return {
     tasks,
