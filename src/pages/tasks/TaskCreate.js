@@ -1,5 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import TaskForm from "./TaskForm";
+
 import { axiosReq } from "../../api/axiosDefaults";
 
 // Custom hook for handling task creation logic
@@ -12,23 +14,24 @@ const useTaskCreateForm = (history) => {
     priority: "medium",
     state: "open",
     category: "misc",
+    notes: "",
   });
 
   // ----- Handle input changes for text and date fields -----
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+  const handleChange = ({ target: { name, value } }) =>
     setFormData((prev) => ({ ...prev, [name]: value }));
 
   // ----- Handle dropdown selection changes -----
-  const handleSelect = (field) => (eventKey) => {
+  const handleSelect = (field) => (eventKey) =>
     setFormData((prev) => ({ ...prev, [field]: eventKey }));
 
-  // ----- Submit form data to API -----
+  // Handles form submission (POST request to create new task)
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const payload = {
         ...formData,
+        // Convert due_date to ISO string if it exists
         due_date: formData.due_date ? new Date(formData.due_date).toISOString() : null,
       };
       await axiosReq.post("/api/tasks/", payload);
@@ -38,10 +41,13 @@ const useTaskCreateForm = (history) => {
     }
   };
 
-  const getMinDate = () => new Date().toISOString().split("T")[0];
+  // Returns the minimum selectable date (today's date in YYYY-MM-DD format)
+  const getMinDate = () => new Date().toISOString().slice(0, 10);
 
+  // Return all utilities needed in the form
   return {
     formData,
+    setFormData,
     handleChange,
     handleSelect,
     handleSubmit,
@@ -49,9 +55,13 @@ const useTaskCreateForm = (history) => {
   };
 };
 
+
+// Component responsible for rendering the Create Task page
 function TaskCreate() {
   const history = useHistory();
 
+
+  // Use custom hook to get form logic and state
   const {
     formData,
     handleChange,
@@ -61,10 +71,14 @@ function TaskCreate() {
   } = useTaskCreateForm(history);
 
   return (
-    <div>
-      {/* placeholder - form not yet extracted */}
-      <pre>{JSON.stringify(formData, null, 2)}</pre>
-    </div>
+    <TaskForm
+      formData={formData}
+      handleChange={handleChange}
+      handleSelect={handleSelect}
+      handleSubmit={handleSubmit}
+      getMinDate={getMinDate}
+      isEditMode={false}
+    />
   );
 }
 
