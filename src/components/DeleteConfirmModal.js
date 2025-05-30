@@ -8,6 +8,7 @@ const DeleteConfirmModal = ({ show, onHide, onConfirm, error }) => (
     </Modal.Header>
     <Modal.Body>
       Are you sure you want to delete this item?
+      {error && <div className="text-danger mt-2">{error}</div>}
     </Modal.Body>
     <Modal.Footer>
       <Button variant="secondary" onClick={onHide}>
