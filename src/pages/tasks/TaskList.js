@@ -32,6 +32,20 @@ function TaskList() {
   const [currentPage, setCurrentPage] = useState(1);
   const tasksPerPage = 6;
 
+  const filteredTasks = filterAndSortTasks({
+    selectedCategory,
+    searchTerm,
+    sortBy,
+  });
+  const completedTasks = filteredTasks.filter((t) => t.state === "done");
+  const activeTasks = filteredTasks.filter((t) => t.state !== "done");
+  const { todayTasks, weekTasks, laterTasks } = groupTasks(activeTasks);
+
+  const paginate = (items) => {
+    const start = (currentPage - 1) * tasksPerPage;
+    return items.slice(start, start + tasksPerPage);
+  };
+
   return (
     <Container>
       <h2 className="my-4 text-center">
