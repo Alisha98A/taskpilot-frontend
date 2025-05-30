@@ -15,6 +15,12 @@ function CompletedTaskCard({ task, deleteTask }) {
 
           {/* Task description */}
           <Card.Text>{task.description}</Card.Text>
+
+          {/* Task category with icon */}
+          <Card.Text>
+            <i className="fas fa-folder-open me-2 text-secondary"></i>
+            <strong>Category:</strong> {task.category}
+          </Card.Text>
         </Card.Body>
       </Card>
     </Col>
