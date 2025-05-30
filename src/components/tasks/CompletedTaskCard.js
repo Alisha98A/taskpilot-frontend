@@ -7,6 +7,11 @@ function CompletedTaskCard({ task, deleteTask }) {
       {/* Card container with styling */}
       <Card className={`${styles.completedCard} shadow-sm`}>
         <Card.Body>
+          {/* Title with completed icon */}
+          <Card.Title className={styles.completedCardTitle}>
+            <i className="fas fa-check-double me-2 text-success"></i>
+            {task.title}
+          </Card.Title>
           {/* Content will go here */}
         </Card.Body>
       </Card>
