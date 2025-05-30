@@ -31,10 +31,28 @@ export const useTasks = () => {
     }
   };
 
+  // Update a task's state, e.g., open, done
+  const updateTaskState = async (task, newState) => {
+    try {
+      const isoDueDate = new Date(task.due_date).toISOString();
+      await axiosReq.put(`/api/tasks/${task.id}/`, {
+        ...task,
+        due_date: isoDueDate,
+        state: newState,
+      });
+      setTasks((prev) =>
+        prev.map((t) => (t.id === task.id ? { ...t, state: newState } : t))
+      );
+    } catch (err) {
+      console.error("Error updating task state:", err);
+    }
+  };
+
   return {
     tasks,
     setTasks,
     categories,
     deleteTask,
+    updateTaskState,
   };
 };
