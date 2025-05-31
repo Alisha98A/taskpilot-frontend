@@ -18,7 +18,7 @@ export const CurrentUserProvider = ({ children }) => {
   useEffect(() => {
     const handleMount = async () => {
       try {
-        const { data } = await axiosReq.get("/dj-rest-auth/user/");
+        const { data } = await axiosReq.get("/api/dj-rest-auth/user/");
         setCurrentUser(data);
       } catch (err) {
         // Not logged in or session expired
