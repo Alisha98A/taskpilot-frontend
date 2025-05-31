@@ -51,7 +51,7 @@ function App() {
         <Container className={styles.Main}>
           <Switch>
             {/* Home / Dashboard */}
-            <Route exact path="/" render={() => <Dashboard />} />
+            <PrivateRoute exact path="/" component={Dashboard} />
 
             {/* Tasks */}
             <PrivateRoute exact path="/tasks" component={TaskList} />
