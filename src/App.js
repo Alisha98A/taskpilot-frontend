@@ -30,12 +30,18 @@ import NoteDelete from "./pages/notes/NoteDelete";
 // Contact Page
 import ContactForm from "./pages/contact/ContactForm";
 
+// Context
+import { useUserLoaded } from "./contexts/CurrentUserContext";
+
 function App() {
   const location = useLocation();
+  const userLoaded = useUserLoaded();
 
   useEffect(() => {
     document.body.classList.toggle("no-scroll", location.pathname === "/");
   }, [location.pathname]);
+
+  if (!userLoaded) return null;
 
   return (
     <div className={styles.App}>
