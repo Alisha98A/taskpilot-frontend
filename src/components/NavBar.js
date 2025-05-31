@@ -100,14 +100,25 @@ const NavBar = () => {
         />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto text-left">
-            <NavLink
-              to="/"
-              className={({ isActive }) =>
-                isActive ? `${styles.navLink} ${styles.Active}` : styles.navLink
-              }
-            >
-              <i className="fas fa-home"></i> Home
-            </NavLink>
+            {currentUser ? (
+              <NavLink
+                to="/dashboard"
+                className={({ isActive }) =>
+                  isActive ? `${styles.navLink} ${styles.Active}` : styles.navLink
+                }
+              >
+                <i className="fas fa-tachometer-alt"></i> Dashboard
+              </NavLink>
+            ) : (
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  isActive ? `${styles.navLink} ${styles.Active}` : styles.navLink
+                }
+              >
+                <i className="fas fa-home"></i> Home
+              </NavLink>
+            )}
             {currentUser ? loggedInLinks : loggedOutLinks}
           </Nav>
         </Navbar.Collapse>
