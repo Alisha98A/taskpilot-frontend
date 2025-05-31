@@ -6,7 +6,6 @@ import styles from "./App.module.css";
 import NavBar from "./components/NavBar";
 import PrivateRoute from "./components/PrivateRoute";
 
-import { useCurrentUser } from "./contexts/CurrentUserContext";
 import "./api/axiosDefaults";
 
 // Pages
@@ -32,26 +31,26 @@ import NoteDelete from "./pages/notes/NoteDelete";
 import ContactForm from "./pages/contact/ContactForm";
 
 function App() {
-  const currentUser = useCurrentUser();
   const location = useLocation();
 
-  const isWelcomePage = location.pathname === "/" && !currentUser;
-
   useEffect(() => {
-    document.body.classList.toggle("no-scroll", isWelcomePage);
-  }, [isWelcomePage]);
+    document.body.classList.toggle("no-scroll", location.pathname === "/");
+  }, [location.pathname]);
 
   return (
     <div className={styles.App}>
       <NavBar />
 
-      {isWelcomePage ? (
+      {location.pathname === "/" ? (
         <WelcomePage />
       ) : (
         <Container className={styles.Main}>
           <Switch>
-            {/* Home / Dashboard */}
-            <PrivateRoute exact path="/" component={Dashboard} />
+            {/* Home */}
+            <Route exact path="/" component={WelcomePage} />
+
+            {/* Dashboard */}
+            <PrivateRoute exact path="/dashboard" component={Dashboard} />
 
             {/* Tasks */}
             <PrivateRoute exact path="/tasks" component={TaskList} />
@@ -66,7 +65,7 @@ function App() {
             <PrivateRoute exact path="/notes/:id/edit" component={NoteEdit} />
             <PrivateRoute exact path="/notes/:id/delete" component={NoteDelete} />
 
-            {/* Contact (submit only) */}
+            {/* Contact */}
             <PrivateRoute exact path="/contact" component={ContactForm} />
 
             {/* Auth */}
