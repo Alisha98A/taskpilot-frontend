@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = 'https://taskpilot-backend-6ee557f05c5b.herokuapp.com/api/';
+const BASE_URL = 'https://taskpilot-backend-6ee557f05c5b.herokuapp.com';
 
 export const axiosReq = axios.create({
   baseURL: BASE_URL,
