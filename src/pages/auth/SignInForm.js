@@ -56,7 +56,7 @@ function SignInForm() {
 
       // Delay navigation slightly to let the user see the message
       setTimeout(() => {
-        history.push("/");
+        history.push("/dashboard");
       }, 1500);
     } catch (err) {
       setErrors(err.response?.data || {});
