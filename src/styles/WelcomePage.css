@@ -219,3 +219,15 @@
     width: 100%;
   }
 }
+
+/* === iPhone 16 / large notch devices (portrait only) === */
+@media screen and (min-device-width: 430px) and (max-device-width: 470px) and (orientation: portrait) {
+  .welcome-hero {
+    padding-top: calc(env(safe-area-inset-top, 20px) + 4rem);
+    align-items: flex-start;
+  }
+
+  .welcome-card {
+    margin-top: 2rem;
+  }
+}
