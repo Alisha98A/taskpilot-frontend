@@ -38,4 +38,32 @@ describe("DeleteConfirmModal", () => {
 
     expect(screen.queryByText("Confirm Delete")).not.toBeInTheDocument();
   });
+
+  it("should call onHide when Cancel button is clicked", () => {
+    render(
+      <DeleteConfirmModal 
+        show={true} 
+        onHide={mockOnHide} 
+        onConfirm={mockOnConfirm} 
+        error={null} 
+      />
+    );
+
+    fireEvent.click(screen.getByText("Cancel"));
+    expect(mockOnHide).toHaveBeenCalledTimes(1);
+  });
+
+  it("should call onConfirm when Delete button is clicked", () => {
+    render(
+      <DeleteConfirmModal 
+        show={true} 
+        onHide={mockOnHide} 
+        onConfirm={mockOnConfirm} 
+        error={null} 
+      />
+    );
+
+    fireEvent.click(screen.getByText("Delete"));
+    expect(mockOnConfirm).toHaveBeenCalledTimes(1);
+  });
 });
