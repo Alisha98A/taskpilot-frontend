@@ -9,4 +9,20 @@ describe("DeleteConfirmModal", () => {
     mockOnHide.mockClear();
     mockOnConfirm.mockClear();
   });
+
+  it("should render the modal when show is true", () => {
+    render(
+      <DeleteConfirmModal 
+        show={true} 
+        onHide={mockOnHide} 
+        onConfirm={mockOnConfirm} 
+        error={null} 
+      />
+    );
+
+    expect(screen.getByText("Confirm Delete")).toBeInTheDocument();
+    expect(screen.getByText("Are you sure you want to delete this item?")).toBeInTheDocument();
+    expect(screen.getByText("Cancel")).toBeInTheDocument();
+    expect(screen.getByText("Delete")).toBeInTheDocument();
+  });
 });
