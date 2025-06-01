@@ -49,4 +49,46 @@ describe("TaskCreate Page", () => {
     expect(screen.getByLabelText(/due date/i)).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /create/i })).toBeInTheDocument();
   });
+
+  it("submits the form with valid data", async () => {
+    // Mock successful API response
+    axios.post.mockResolvedValueOnce({ data: { id: 1 } });
+
+    renderTaskCreate();
+
+    // Fill in the form
+    fireEvent.change(screen.getByLabelText(/title/i), {
+      target: { value: "New Task" }
+    });
+    fireEvent.change(screen.getByLabelText(/description/i), {
+      target: { value: "Task Description" }
+    });
+    fireEvent.change(screen.getByLabelText(/category/i), {
+      target: { value: "work" }
+    });
+    fireEvent.change(screen.getByLabelText(/priority/i), {
+      target: { value: "high" }
+    });
+    fireEvent.change(screen.getByLabelText(/due date/i), {
+      target: { value: "2024-03-20" }
+    });
+
+    // Submit the form
+    fireEvent.click(screen.getByRole("button", { name: /create/i }));
+
+    // Verify API call
+    await waitFor(() => {
+      expect(axios.post).toHaveBeenCalledWith("/api/tasks/", {
+        title: "New Task",
+        description: "Task Description",
+        category: "work",
+        priority: "high",
+        due_date: "2024-03-20",
+        state: "open"
+      });
+    });
+
+    // Verify navigation
+    expect(mockNavigate).toHaveBeenCalledWith("/tasks/1");
+  });
 });
