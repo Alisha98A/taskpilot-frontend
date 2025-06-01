@@ -25,4 +25,17 @@ describe("DeleteConfirmModal", () => {
     expect(screen.getByText("Cancel")).toBeInTheDocument();
     expect(screen.getByText("Delete")).toBeInTheDocument();
   });
+
+  it("should not render the modal when show is false", () => {
+    render(
+      <DeleteConfirmModal 
+        show={false} 
+        onHide={mockOnHide} 
+        onConfirm={mockOnConfirm} 
+        error={null} 
+      />
+    );
+
+    expect(screen.queryByText("Confirm Delete")).not.toBeInTheDocument();
+  });
 });
