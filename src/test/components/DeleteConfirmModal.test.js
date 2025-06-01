@@ -66,4 +66,18 @@ describe("DeleteConfirmModal", () => {
     fireEvent.click(screen.getByText("Delete"));
     expect(mockOnConfirm).toHaveBeenCalledTimes(1);
   });
-});
+
+  it("should display error message when error prop is provided", () => {
+    const errorMessage = "Failed to delete item";
+    render(
+      <DeleteConfirmModal 
+        show={true} 
+        onHide={mockOnHide} 
+        onConfirm={mockOnConfirm} 
+        error={errorMessage} 
+      />
+    );
+
+    expect(screen.getByText(errorMessage)).toBeInTheDocument();
+  });
+}); 
