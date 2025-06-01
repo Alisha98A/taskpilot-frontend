@@ -32,3 +32,21 @@ const renderTaskCreate = () => {
     </BrowserRouter>
   );
 };
+
+describe("TaskCreate Page", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it("renders the create task form", () => {
+    renderTaskCreate();
+
+    // Check if form elements are present
+    expect(screen.getByLabelText(/title/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/description/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/category/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/priority/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/due date/i)).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /create/i })).toBeInTheDocument();
+  });
+});
