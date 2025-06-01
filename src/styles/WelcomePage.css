@@ -221,9 +221,9 @@
 }
 
 /* === iPhone 16 / large notch devices (portrait only) === */
-@media screen and (min-device-width: 430px) and (max-device-width: 470px) and (orientation: portrait) {
+@media screen and (min-width: 430px) and (max-width: 470px) and (orientation: portrait) {
   .welcome-hero {
-    padding-top: calc(env(safe-area-inset-top, 20px) + 4rem);
+    padding-top: 4rem;
     align-items: flex-start;
   }
 
