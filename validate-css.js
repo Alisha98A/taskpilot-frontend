@@ -39,3 +39,36 @@ function filterWarnings(warnings) {
     (warn) => !ignoredPatterns.some(pattern => pattern.test(warn.message))
   );
 }
+
+async function validateCssFile(filePath) {
+  try {
+    const css = fs.readFileSync(filePath, "utf-8");
+    console.log(`Validating file: ${filePath}`);
+
+    const data = await validateCss(css);
+
+    if (data.errors.length === 0) {
+      console.log(`✅ No errors found in ${filePath}`);
+    } else {
+      console.log(`❌ Errors in ${filePath}:`);
+      data.errors.forEach((err) => console.log("  - " + err.message));
+    }
+
+    const filteredWarnings = filterWarnings(data.warnings);
+
+    if (filteredWarnings.length > 0) {
+      console.log(`⚠️ Warnings in ${filePath}:`);
+      filteredWarnings.forEach((warn) => console.log("  - " + warn.message));
+    }
+  } catch (err) {
+    console.error(`Error validating ${filePath}:`, err);
+  }
+}
+
+async function validateAll() {
+  for (const file of cssFiles) {
+    await validateCssFile(file);
+  }
+}
+
+validateAll();
