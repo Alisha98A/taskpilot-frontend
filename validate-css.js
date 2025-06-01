@@ -27,3 +27,15 @@ function validateCss(css) {
     });
   });
 }
+
+// Filter out some known warnings you want to ignore
+function filterWarnings(warnings) {
+  const ignoredPatterns = [
+    /vendor extension/i,
+    /deprecated/i,
+    /-webkit-scrollbar/i
+  ];
+  return warnings.filter(
+    (warn) => !ignoredPatterns.some(pattern => pattern.test(warn.message))
+  );
+}
